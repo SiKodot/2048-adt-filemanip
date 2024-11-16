@@ -5,3 +5,5 @@ tubes-game-c.code-workspace
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+.vscode/c_cpp_properties.json
+build/Debug/outDebug.exe

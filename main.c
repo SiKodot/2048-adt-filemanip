@@ -1,6 +1,8 @@
 #include "menu.h"
+#include "greeting.h"
 
 int main() {
-    showMenu(); // Memanggil fungsi yang benar
+    printGreeting(); //print teks selamat datang
+    showMenu(); // Memanggil main menu
     return 0;
 }
