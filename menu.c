@@ -2,6 +2,8 @@
 #include <conio.h> // Untuk _getch()
 #include <stdlib.h> //untuk system("cls")
 #include <stdio.h>
+#include "greeting.h"
+#include "game.h"
 
 void showMenu() { // Ubah nama fungsi menjadi showMenu
     printf("1. start game\n");
@@ -16,7 +18,7 @@ void showMenu() { // Ubah nama fungsi menjadi showMenu
 
     switch (a) {
         case '1': //start game
-                system("cls"); // Bersihkan layar
+            menampilkanPapan(); //Tampilin Papan
             break;
         case '2': //load game
             system("cls"); // Bersihkan layar

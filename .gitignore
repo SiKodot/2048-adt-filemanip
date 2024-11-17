@@ -7,3 +7,6 @@ tubes-game-c.code-workspace
 .vscode/tasks.json
 .vscode/c_cpp_properties.json
 build/Debug/outDebug.exe
+build/Debug/greeting.o
+build/Debug/main.o
+build/Debug/menu.o
