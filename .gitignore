@@ -10,3 +10,5 @@ build/Debug/outDebug.exe
 build/Debug/greeting.o
 build/Debug/main.o
 build/Debug/menu.o
+build/Debug/ukuran.o
+build/Debug/game.o

@@ -4,7 +4,7 @@
 #include <conio.h> // Untuk _getch()
 #include "game.h" // lanjut ke game
 
-void menampilkanPapan(int size);
+void menampilkanPapan();
 
 // Fungsi untuk menampilkan ilustrasi papan
 void ilustrasi(int size) {
@@ -58,6 +58,6 @@ void menu_ukuran() {
     }
 
     // Tunggu input sebelum keluar
-    menampilkanPapan(int size);
+    menampilkanPapan();
 
 }
