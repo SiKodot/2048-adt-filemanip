@@ -14,7 +14,7 @@ void resetPapan()
     }
 }
 
-void menampilkanPapan()
+void menampilkanPapan(int size)
 {
     printf("========2048  Game=======\n");
     printf("-------------------------\n");
