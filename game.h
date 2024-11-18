@@ -2,7 +2,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-void menampilkanPapan(int size); // Deklarasi fungsi
+void menampilkanPapan(); // Deklarasi fungsi
 
 #endif // GAME_H
 /*

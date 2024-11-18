@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "greeting.h" //selamat datang
 #include "game.h" // lanjut ke game
-#include "ukuran.h"
 
 void showMenu() { 
     int selected = 0; // Indeks pilihan yang dipilih
@@ -14,8 +13,13 @@ void showMenu() {
         system("cls"); // Bersihkan layar
 
         // Menampilkan menu dengan pilihan yang dipilih
+
+        printGreeting();
+        
         printf("Main menu:\n");
         
+
+
         // Menggunakan if untuk menentukan tampilan pilihan yang dipilih
         if (selected == 0) {
             printf("-> 1. Start Game\n");
@@ -56,7 +60,7 @@ void showMenu() {
     // Menangani pilihan yang dipilih
     switch (selected) {
         case 0: // Start Game
-            menu_ukuran(); // Tampilkan papan
+            system("cls"); // Tampilkan papan
             break;
         case 1: // Load Game
             system("cls"); // Bersihkan layar
