@@ -12,15 +12,13 @@ LIST MODUL DAN PROSEDUR
     b. 6.6
 
 3. gamenya
-    a. scan wasd
-    b. geser blok
-    b. menampilkan papan
-    c. merge tile
-    d. add random tile
-    e. game over 
-        dia gaada yg bisa digabung lagi
-        printf game over
-        break
+add random tile
+scan wasd
+geser blok
+menampilkan papan
+merge tile
+game over 
+        
 
 
 

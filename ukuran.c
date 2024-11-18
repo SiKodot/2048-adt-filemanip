@@ -32,6 +32,7 @@ void menu_ukuran() {
     char input;
 
     while (1) { // Loop untuk navigasi menu
+        system("cls");
         // Menampilkan pilihan ukuran dengan penanda untuk yang dipilih
         printf("Pilih ukuran kotak:\n");
         for (int i = 0; i < 3; i++) {
@@ -44,7 +45,8 @@ void menu_ukuran() {
         // Menampilkan ilustrasi papan sesuai pilihan saat ini
         ilustrasi(selected + 4); // Menampilkan papan dengan ukuran yang dipilih
         input = _getch(); // Input user memilih apa
-        system("cls"); // Membersihkan layar untuk menampilkan menu lagi
+        system("cls");
+        
 
         // Navigasi menu dengan tombol atas dan bawah
         if (input == 'w' && selected > 0) {
@@ -57,6 +59,7 @@ void menu_ukuran() {
     }
 
     // Tunggu input sebelum keluar
+    system("cls");
     menampilkanPapan(selected + 4);
 
 }
