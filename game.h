@@ -2,6 +2,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+void resetPapan();
 void menampilkanPapan(); // Deklarasi fungsi
 
 #endif // GAME_H

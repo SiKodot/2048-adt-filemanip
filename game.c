@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 
-int papan[3][3];
+int papan[4][4];
+
+void gameMain(){
+    resetPapan();
+    menampilkanPapan();
+}
 
 void resetPapan() {
     for (int i = 0; i < 4; i++) {
@@ -13,10 +18,18 @@ void resetPapan() {
 }
 
 void menampilkanPapan() {
-    for (int i = 0; i < 4 ; i++) {
-        for (int j = 0; j < 4; j++) {
-            printf("%d ", papan[i][j]); // Menampilkan isi papan
+    for (int i = 0; i < 4; i++) {
+        // Menampilkan garis horizontal atas
+        if (i == 0) {
+            printf("+---+---+---+---+\n");
         }
-        printf("\n"); // Baris baru setelah setiap baris papan
+
+        for (int j = 0; j < 4; j++) {
+            printf("| %d ", papan[i][j]); // Menampilkan isi papan dengan batas
+        }
+        printf("|\n"); // Menutup baris dengan batas vertikal
+
+        // Menampilkan garis horizontal bawah
+        printf("+---+---+---+---+\n");
     }
 }

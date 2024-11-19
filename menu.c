@@ -61,6 +61,7 @@ void showMenu() {
     switch (selected) {
         case 0: // Start Game
             system("cls"); // Tampilkan papan
+            gameMain();
             break;
         case 1: // Load Game
             system("cls"); // Bersihkan layar
