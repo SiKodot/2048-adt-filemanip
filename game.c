@@ -7,6 +7,7 @@ int papan[4][4];
 void gameMain(){
     resetPapan();
     menampilkanPapan();
+    geser();
 }
 
 void resetPapan() {
@@ -31,5 +32,26 @@ void menampilkanPapan() {
 
         // Menampilkan garis horizontal bawah
         printf("+---+---+---+---+\n");
+    }
+}
+
+void geser(){
+    while (1) {
+
+        char a;
+        a=_getch();
+        if (a == 'w' || a== 72) {
+            printf("atas");
+        }
+        if (a == 's' || a == 80) {
+            printf("bawah");
+        }
+        if (a == 'a' || a == 75) {
+            printf("kiri");
+        }
+        if (a == 'd' || a == 77) {
+            printf("kanan");
+        }
+        
     }
 }

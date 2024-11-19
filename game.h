@@ -4,6 +4,7 @@
 
 void resetPapan();
 void menampilkanPapan(); // Deklarasi fungsi
+void geser();
 
 #endif // GAME_H
 /*
