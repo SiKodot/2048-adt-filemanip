@@ -2,19 +2,34 @@
 #include <conio.h> // Untuk _getch()
 #include <stdlib.h> // Untuk system("cls")
 #include <stdio.h>
-#include "greeting.h" //selamat datang
 #include "game.h" // lanjut ke game
 
 void showMenu() { 
     int selected = 0; // Indeks pilihan yang dipilih
-    char a;
 
     while (1) { // Loop untuk menampilkan menu
         system("cls"); // Bersihkan layar
 
         // Menampilkan menu dengan pilihan yang dipilih
 
-        printGreeting();
+        printf("     ____    ____   __           _       ___        ___        _       __________          \n");
+        printf("    |  __|  |   _| |  |         / \\     |   \\      /   |      / \\     |___    ___|         \n");
+        printf("    | |__   |  |_  |  |        /   \\    | |\\ \\    / /| |     /   \\        |  |            \n");    
+        printf("    |__  |  |   _| |  |       / /\\  \\   | | \\ \\  / / | |    / /_\\ \\       |  |            \n");
+        printf("     _|  |  |  |_  |  |___   /  ___  \\  | |  \\ \\/ /  | |   /  ___  \\      |  |            \n");
+        printf("    |____|  |____| |______| /__/   \\__\\ |_|   \\__/   |_|  /__/   \\__\\     |__|            \n\n\n");
+        printf("      _____          _       __________       _        ____     __    _______          \n");
+        printf("     |  __ \\        / \\     |___    ___|     / \\      |    \\   |  |  |  _____|         \n");
+        printf("     | |  | |      /   \\        |  |        /   \\     |  |\\ \\  |  |  | |  ___          \n");
+        printf("     | |  | |     / /_\\ \\       |  |       / /_\\ \\    |  | \\ \\ |  |  | | |_  |         \n");
+        printf("     | |__| |    /  ___  \\      |  |      /  ___  \\   |  |  \\ \\|  |  | |___| |         \n");
+        printf("     |_____/    /__/   \\__\\     |__|     /__/   \\__\\  |__|   \\____|  |_______|         \n\n\n");
+        printf("                 _______      _________        ____       _______                    \n");
+        printf("                /_____  \\    |  _____  |      / __ |     |  ___  |                         \n");
+        printf("                     /  /    | |     | |     / /__||__   | |___| |                \n");
+        printf("                    /  /     | |     | |    /__     __|  |  ___  |                        \n");
+        printf("                 __/  /__    | |_____| |       |   |     | |___| |                    \n");
+        printf("                |________|   |_________|       |___|     |_______|                                        \n");
         
         printf("Main menu:\n");
         
@@ -28,9 +43,9 @@ void showMenu() {
         }
 
         if (selected == 1) {
-            printf("-> 2. Load Game\n");
+            printf("-> 2. Leaderboard Highscore\n");
         } else {
-            printf("   2. Load Game\n");
+            printf("   2. Leaderboard Highscore\n");
         }
 
         if (selected == 2) {
@@ -45,14 +60,14 @@ void showMenu() {
             printf("   4. Exit\n");
         }
 
-        a = _getch(); // Input user memilih apa
+        char q = _getch(); // Input user memilih apa
 
         // Navigasi menu dengan tombol atas dan bawah
-        if (a == 'w' && selected > 0) {
+        if (q == 'w' && selected > 0) {
             selected--; // Pindah ke atas
-        } else if (a == 's' && selected < 3) {
+        } else if (q == 's' && selected < 3) {
             selected++; // Pindah ke bawah
-        } else if (a == '\r') { // Jika Enter ditekan
+        } else if (q == '\r') { // Jika Enter ditekan
             break; // Keluar dari loop
         }
     }
@@ -63,7 +78,7 @@ void showMenu() {
             system("cls"); // Tampilkan papan
             gameMain();
             break;
-        case 1: // Load Game
+        case 1: // Leaderboard
             system("cls"); // Bersihkan layar
             break;
         case 2: // How to Play
@@ -77,7 +92,6 @@ void showMenu() {
             printf("Tekan apapun untuk kembali");
             getch();
             system("cls"); // Bersihkan layar
-            printGreeting();
             showMenu();
             break;
         case 3: // Exit

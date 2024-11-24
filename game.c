@@ -5,14 +5,17 @@
 #include <time.h>
 
 int papan[4][4];
+int score;
 
 void gameMain(){
     int A;
+    score=0;
     resetPapan(); // Reset papan sekali di awal
     while (1) { // Loop tak terbatas untuk terus menerima input
         system("cls");
+        addrandom();
+        printf("Score: %d\n", score);
         menampilkanPapan(); // Tampilkan papan saat ini
-        addrandom(); // Tambahkan angka acak di papan
         geser(&A); // Ambil input dari pengguna
         geserangka(A); // Geser angka berdasarkan input
     }
@@ -32,35 +35,35 @@ void menampilkanPapan() {
     for (int i = 0; i < 4; i++) {
         // Menampilkan garis horizontal atas
         if (i == 0) {
-            printf("+---+---+---+---+\n");
+            printf("+------+------+------+------+\n");
         }
 
         for (int j = 0; j < 4; j++) {
-            printf("| %d ", papan[i][j]); // Menampilkan isi papan dengan batas
+            printf("| %4d ", papan[i][j]); // Menampilkan isi papan dengan batas
         }
         printf("|\n"); // Menutup baris dengan batas vertikal
 
         // Menampilkan garis horizontal bawah
-        printf("+---+---+---+---+\n");
+        printf("+------+------+------+------+\n");
     }
 }
 
 void geser(int *arah){
     while (1) {
 
-        char a =_getch();
+        char p =_getch();
 
-        if (a == 'w' || a == 72) {
+        if (p == 'w' || p == 72) { //atas
             *arah = 1;
         }
-        else if (a == 's' || a == 80) {
+        else if (p == 's' || p == 80) { // bawah
             *arah = 2;
         }
-        else if (a == 'a' || a == 75) {
+        else if (p == 'a' || p == 75) { //kiri
             *arah = 3;
             break;
         }
-        else if (a == 'd' || a == 77) {
+        else if (p == 'd' || p == 77) { //kanan
             *arah = 4;
             break;
         }
@@ -104,22 +107,48 @@ void addrandom (){
 }
 
 void geserangka(int arah) {
-    if (arah == 1) {
+
+    if (arah == 1){//atas
+
+    }
+
+    if (arah == 2) { //bawah
+
+    }
+
+    if (arah == 4) {//kanan
         
     }
     
     if (arah == 3) { // Kiri
-        for (int i = 0; i < 4; i++) {
-            for (int j = 1; j < 4; j++) { // Mulai dari kolom 1
+        for (int i = 0; i < 4; i++) { //loop baris
+            for (int j = 1; j < 4; j++) { // loop kolom
                 if (papan[i][j] != 0) { // Jika ada angka
-                    int k = j;
-                    while (k > 0 && papan[i][k - 1] == 0) { // Geser ke kiri
-                        papan[i][k - 1] = papan[i][k];
-                        papan[i][k] = 0;
-                        k--;
+                    int k = j; //maka posisi kolom atau j akan disimpan di var k
+                    while (k > 0 && papan[i][k - 1] == 0) { //Selama k lebih besar dari 0 dan sel di kiri kosong
+                        papan[i][k - 1] = papan[i][k]; //Geser angka ke kiri
+                        papan[i][k] = 0; // Setel sel saat ini menjadi kosong
+                        k--; //pindah ke kolom kiri
                     }
                 }
             }
         }
+    merge(arah); // Panggil fungsi merge setelah menggeser angka
     }
+}
+
+void merge(int arah){
+if (arah=3){
+    for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
+        for (int j = 0; j < 3; j++) { // Loop untuk kolom dari 0 hingga 2 (kolom 3 tidak perlu diperiksa)
+            if (papan[i][j] != 0 && papan[i][j] == papan[i][j + 1]) { // Jika ada angka dan angka di sebelah kanan sama
+                score += papan[i][j] * 2; // Tambahkan nilai yang digabungkan ke skor
+                papan[i][j] *= 2; // Gabungkan angka dengan mengalikan dengan 2
+                papan[i][j + 1] = 0; // Setel sel di sebelah kanan menjadi kosong
+            }
+        }
+    }
+    }
+if (arah=4){
+}
 }

@@ -7,6 +7,7 @@ void menampilkanPapan(); // Deklarasi fungsi
 void geser();
 void addrandom();
 void geserangka(int arah);
+void merge();
 #endif // GAME_H
 /*
 void scanWASD();
