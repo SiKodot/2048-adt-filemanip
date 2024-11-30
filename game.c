@@ -80,9 +80,6 @@ void geserMerge()
     else if (p == 'd' || p == 77) { //kanan
         geserKanan();
     }
-    else if (p == 'q' || p == 'Q') {
-    exit(0);
-    }
     else{
         return;
     }

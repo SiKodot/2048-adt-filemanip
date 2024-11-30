@@ -53,11 +53,12 @@ void gameMain() {
     while (1) {
         // Tampilkan papan
         menampilkanPapan();
-        displayPapan();
+        displayPapan(&game);
         
         // Periksa jika game over
         if (gameOver()) {
-            displayGameOver();
+            displayGameOver(&game);
+            break;
         }
 
         // Panggil fungsi geserMerge untuk menangani input
