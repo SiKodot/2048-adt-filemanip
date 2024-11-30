@@ -11,23 +11,23 @@ Game2048 game;
 int main() {
     greeting();
 
-    char a =_getch(); //input user memilih apa 
+    int a =_getch(); //input user memilih apa 
     switch (a) {
-        case '1': //start game
+        case 1: //start game
             system("cls"); // Bersihkan layar
             gameMain();
             break;
-        case '2': //Highscore
+        case 2: //Highscore
             system("cls"); // Bersihkan layar
             break;
-        case '3': //how to play
+        case 3: //how to play
             system("cls");
             howtoplay();
             getch();// tekan apa saja untuk kembali ke main
             system("cls"); // Bersihkan layar
             greeting();
             break;
-        case '4': //exit
+        case 4: //exit
             system("cls"); // Bersihkan layar
             exit(0);
             break;
