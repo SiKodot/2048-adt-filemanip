@@ -10,23 +10,23 @@
 int main() {
     greeting();
 
-    int a =_getch(); //input user memilih apa 
+    char a =_getch(); //input user memilih apa 
     switch (a) {
-        case 1: //start game
+        case '1': //start game
             system("cls"); // Bersihkan layar
             gameMain();
             break;
-        case 2: //Highscore
+        case '2': //Highscore
             system("cls"); // Bersihkan layar
             break;
-        case 3: //how to play
+        case '3': //how to play
             system("cls");
             howtoplay();
             getch();// tekan apa saja untuk kembali ke main
             system("cls"); // Bersihkan layar
             greeting();
             break;
-        case 4: //exit
+        case '4': //exit
             system("cls"); // Bersihkan layar
             exit(0);
             break;
@@ -35,10 +35,6 @@ int main() {
 
 void gameMain() {
     // Inisialisasi skor dan papan
-    game.score = 0;
-    if (game.score > game.highscore) {
-        game.highscore = game.score;
-    }
     resetPapan();
 
     // Tambahkan dua angka acak di awal permainan
@@ -46,15 +42,16 @@ void gameMain() {
     addrandom();
 
     // Loop utama permainan
-    while (1) {
+    while (true) {
+        displayPapan(&game);
         // Tampilkan papan
         menampilkanPapan();
-        displayPapan(&game);
         
         // Periksa jika game over
         if (gameOver()) {
+            printf("Game Over! Skor akhir: %d\n", game.score);
             displayGameOver(&game);
-            break;
+            break; // Keluar dari loop jika permainan sudah berakhir
         }
 
         // Panggil fungsi geserMerge untuk menangani input
@@ -62,5 +59,7 @@ void gameMain() {
 
         // Tambahkan angka acak baru setelah pergerakan
         addrandom();
+
+        gameOver();
     }
 }

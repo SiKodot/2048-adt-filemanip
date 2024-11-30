@@ -87,6 +87,7 @@ void geserMerge()
 
 void geserAtas()
 {
+        
     for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom
         for (int i = 1; i < 4; i++) { // Mulai dari baris kedua
             if (game.papan[i][j] != 0) { // Jika ada angka
@@ -104,6 +105,7 @@ void geserAtas()
 
 void geserBawah()
 {
+        
     for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom
         for (int i = 2; i >= 0; i--) { // Mulai dari baris ketiga ke atas
             if (game.papan[i][j] != 0) { // Jika ada angka
@@ -118,9 +120,10 @@ void geserBawah()
     }
     mergeBawah(); // Panggil fungsi merge setelah menggeser angka
 }
-   
+
 void geserKiri()// Kiri
 {
+    mergeKiri(); // Panggil fungsi merge setelah menggeser angka
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
         for (int j = 1; j < 4; j++) { // Mulai dari kolom kedua
             if (game.papan[i][j] != 0) { // Jika ada angka
@@ -132,12 +135,12 @@ void geserKiri()// Kiri
             }
         }
     }
-    mergeKiri(); // Panggil fungsi merge setelah menggeser angka
 }
 
 
 void geserKanan()
 {
+  mergeKanan(); // Panggil fungsi merge setelah menggeser angka
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
         for (int j = 2; j >= 0; j--) { // Mulai dari kolom ketiga ke kiri
             if (game.papan[i][j] != 0) { // Jika ada angka
@@ -150,7 +153,6 @@ void geserKanan()
             }
         }
     }
-    mergeKanan(); // Panggil fungsi merge setelah menggeser angka
 }
 
 void mergeAtas()
@@ -224,26 +226,10 @@ bool gameOver()
         }
     }
 
-    for (int i=0; i<=3; i++){
-        for (int j=1;j<=3; j++){
-            if (game.papan[i][j-1] != 0 && game.papan[i][j]!=0 && game.papan[i][j] == game.papan[i][j-1]){
-                return false;// jika balok sama dengan balok kiri berarti masih lanjut
-            }
-        }
-    }
-
     for (int i=1; i<=3; i++){
         for (int j=0;j<=3; j++){
             if (game.papan[i-1][j] != 0 && game.papan[i][j]!=0 && game.papan[i][j] == game.papan[i-1][j]){
-                return false;// jika balok sama dengan balok atas berarti masih lanjut
-            }
-        }
-    }
-
-    for (int i=0; i<=2; i++){
-        for (int j=0;j<=3; j++){
-            if (game.papan[i+1][j] != 0 && game.papan[i][j]!=0 && game.papan[i][j] == game.papan[i+1][j]){
-                return false;// jika balok sama dengan balok atas berarti masih lanjut
+                return false;// jika balok sama dengan balok bawah berarti masih lanjut
             }
         }
     }
