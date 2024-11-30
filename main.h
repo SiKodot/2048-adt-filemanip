@@ -11,4 +11,6 @@ typedef struct {
 
 }Game2048;
 
+extern Game2048 game;
+
 #endif

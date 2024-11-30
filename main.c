@@ -6,7 +6,6 @@
 #include <time.h>
 #include <conio.h>
 
-Game2048 game;
 
 int main() {
     greeting();
@@ -30,9 +29,6 @@ int main() {
         case 4: //exit
             system("cls"); // Bersihkan layar
             exit(0);
-            break;
-        default: //jika tidak valid
-            printf("Pilihan tidak valid\n"); // Menangani pilihan yang tidak valid
             break;
     }
 }
