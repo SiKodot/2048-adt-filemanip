@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include "main.h"
+#include "display.h"
+
+void greeting(){
+        printf("     ____    ____   __           _       ___        ___        _       __________          \n");
+        printf("    |  __|  |   _| |  |         / \\     |   \\      /   |      / \\     |___    ___|         \n");
+        printf("    | |__   |  |_  |  |        /   \\    | |\\ \\    / /| |     /   \\        |  |            \n");    
+        printf("    |__  |  |   _| |  |       / /\\  \\   | | \\ \\  / / | |    / /_\\ \\       |  |            \n");
+        printf("     _|  |  |  |_  |  |___   /  ___  \\  | |  \\ \\/ /  | |   /  ___  \\      |  |            \n");
+        printf("    |____|  |____| |______| /__/   \\__\\ |_|   \\__/   |_|  /__/   \\__\\     |__|            \n\n\n");
+        printf("      _____          _       __________       _        ____     __    _______          \n");
+        printf("     |  __ \\        / \\     |___    ___|     / \\      |    \\   |  |  |  _____|         \n");
+        printf("     | |  | |      /   \\        |  |        /   \\     |  |\\ \\  |  |  | |  ___          \n");
+        printf("     | |  | |     / /_\\ \\       |  |       / /_\\ \\    |  | \\ \\ |  |  | | |_  |         \n");
+        printf("     | |__| |    /  ___  \\      |  |      /  ___  \\   |  |  \\ \\|  |  | |___| |         \n");
+        printf("     |_____/    /__/   \\__\\     |__|     /__/   \\__\\  |__|   \\____|  |_______|         \n\n\n");
+        printf("                 _______      _________        ____       _______                    \n");
+        printf("                /_____  \\   |  _____  |      / __ |     |  ___  |                         \n");
+        printf("                     /  /    | |     | |     / /__||__   | |___| |                \n");
+        printf("                    /  /     | |     | |    /__     __|  |  ___  |                        \n");
+        printf("                 __/  /__    | |_____| |       |   |     | |___| |                    \n");
+        printf("                |________|   |_________|       |___|     |_______|                                        \n");
+        
+        printf("Main menu:\n");
+        printf("1. start game\n");
+        printf("2. leaderboard highscore\n");
+        printf("3. how to play\n");
+        printf("4. exit\n\n");
+        printf("Masukkan pilihan anda\n");
+}
+
+void howtoplay(){
+        printf("Papan   : Game 2048 dimainkan di papan berukuran 4x4.\n");
+        printf("Ubin    : Setiap ubin memiliki nilai yang merupakan kelipatan dua, seperti 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, dan 2048.\n");
+        printf("Geser Ubin: Anda dapat menggeser ubin ke atas, bawah, kiri, atau kanan. Ubin yang memiliki angka yang sama akan bergabung menjadi satu ubin dengan nilai yang dijumlahkan.\n");
+        printf("Munculnya Ubin Baru: Setiap kali Anda melakukan gerakan, ubin baru dengan nilai 2 atau 4 akan muncul di papan.\n");
+        printf("Kemenangan  : Anda menang jika Anda berhasil menggabungkan ubin menjadi 2048.\n");
+        printf("Kekalahan   : Permainan berakhir jika tidak ada lagi gerakan yang mungkin dilakukan dan papan sudah penuh.\n\n\n");
+        printf("Tekan apapun untuk kembali");
+}
+
+
+void displayPapan(Game2048 *game) {
+    printf("Score: %d\n", game->score);  // Menggunakan -> untuk mengakses anggota dari pointer struct
+    printf("High Score: %d\n", game->highscore);
+    printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
+}
+
+
+// Fungsi untuk menampilkan pesan Game Over
+void displayGameOver(Game2048 *game) { 
+    printf("Game Over! Skor akhir: %d\n", game->score);
+    if (game->score > game->highscore) { // Membandingkan skor dengan highscore
+        game->highscore = game->score;   // Mengupdate highscore
+        printf("Selamat! High Score baru: %d\n", game->highscore);
+    }
+}

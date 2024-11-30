@@ -19,12 +19,3 @@ menampilkan papan
 merge tile
 game over 
         
-
-
-
-
-
-
-
-
-
