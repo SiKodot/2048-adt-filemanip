@@ -24,7 +24,7 @@ void greeting(){
         
         printf("Main menu:\n");
         printf("1. start game\n");
-        printf("2. leaderboard highscore\n");
+        printf("2. highscore\n");
         printf("3. how to play\n");
         printf("4. exit\n\n");
         printf("Masukkan pilihan anda\n");

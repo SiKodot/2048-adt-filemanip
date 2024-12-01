@@ -80,8 +80,11 @@ void geserMerge()
     else if (p == 'd' || p == 77) { //kanan
         geserKanan();
     }
+    else if (p=='q'){//keluar
+        main();
+    }
     else{
-        return;
+        geserMerge();
     }
 }
 
@@ -234,5 +237,29 @@ bool gameOver()
         }
     }
 
-    return true;
+    return true; //jika tidak ada yg terjalankan maka akan true yaitu gameover
+}
+
+bool win()
+{
+    for (int i=0; i<=3; i++){
+        for (int j=0; j<=3; j++){
+            if (game.papan[i][j]==2048){
+            return true;//jika ada salah satu balok yang mencapai 2048 maka akan menang dan gameover
+            }
+        }
+    }
+    return false;//jika tidak ada balok yg 2048 false yaitu lanjut ke game lagi
+}
+
+bool ifinitiation()
+{
+    for (int i=0; i<=3; i++){
+        for (int j=0; j<=3; j++){
+            if (game.papan[i][j]!=0){
+            return false;//jika belum ada angka sama sekali maka true yaitu menambahkan 2 blok
+            }
+        }
+    }
+    return true;//jika sudah ada yg berisi angka maka false yaitu melanjutkan game
 }

@@ -14,38 +14,23 @@ int main() {
     switch (a) {
         case '1': //start game
             system("cls"); // Bersihkan layar
-            gameMain();
-            break;
-        case '2': //Highscore
-            system("cls"); // Bersihkan layar
-            break;
-        case '3': //how to play
-            system("cls");
-            howtoplay();
-            getch();// tekan apa saja untuk kembali ke main
-            system("cls"); // Bersihkan layar
-            greeting();
-            break;
-        case '4': //exit
-            system("cls"); // Bersihkan layar
-            exit(0);
-            break;
-    }
-}
-
-void gameMain() {
-    // Inisialisasi skor dan papan
-    resetPapan();
-
-    // Tambahkan dua angka acak di awal permainan
-    addrandom();
-    addrandom();
-
-    // Loop utama permainan
-    while (true) {
+              // Inisialisasi skor dan papan
+        // Tambahkan dua angka acak di awal permainan
+        if (ifinitiation()){
+            addrandom();
+            addrandom();
+        }
+        
+        while (true) {
         displayPapan(&game);
         // Tampilkan papan
         menampilkanPapan();
+
+        if (win()){
+            printf ("You win!\n");
+            displayGameOver(&game);
+            break;
+        }
         
         // Periksa jika game over
         if (gameOver()) {
@@ -59,7 +44,31 @@ void gameMain() {
 
         // Tambahkan angka acak baru setelah pergerakan
         addrandom();
-
-        gameOver();
     }
+        
+        break;
+
+
+
+        case '2': //Highscore
+            system("cls"); // Bersihkan layar
+            break;
+
+
+
+        case '3': //how to play
+            system("cls");
+            howtoplay();
+            getch();// tekan apa saja untuk kembali ke main
+            system("cls"); // Bersihkan layar
+            main();
+            break;
+
+
+
+        case '4': //exit
+            system("cls"); // Bersihkan layar
+            exit(0);
+            break;
+}
 }
