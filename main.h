@@ -13,4 +13,12 @@ typedef struct {
 
 extern Game2048 game;
 
+typedef struct 
+{
+    char username[50];
+    int highscore;
+}HighScoreEntry;
+
+extern HighScoreEntry Entry;
+
 #endif

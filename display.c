@@ -40,8 +40,14 @@ void howtoplay(){
         printf("Tekan apapun untuk kembali");
 }
 
+void printinputusername(){
+        printf("Masukkan nama pengguna\n");
+        printf("Jika sudah selesai tekan enter dan pastikan nama sesuai\n");
+}
+
 
 void displayPapan(Game2048 *game) {
+    printf("Nama Pengguna: %s\n", game->username);
     printf("Score: %d\n", game->score);  // Menggunakan -> untuk mengakses anggota dari pointer struct
     printf("High Score: %d\n", game->highscore);
     printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
@@ -51,6 +57,15 @@ void displayPapan(Game2048 *game) {
 // Fungsi untuk menampilkan pesan Game Over
 void displayGameOver(Game2048 *game) { 
     printf("Game Over! Skor akhir: %d\n", game->score);
+    if (game->score > game->highscore) { // Membandingkan skor dengan highscore
+        game->highscore = game->score;   // Mengupdate highscore
+        printf("Selamat! High Score baru: %d\n", game->highscore);
+    }
+}
+
+void displaywin(Game2048 *game){
+    printf("You Win! %s\n", game->username);
+    printf("Skor akhir: %d\n", game->score);
     if (game->score > game->highscore) { // Membandingkan skor dengan highscore
         game->highscore = game->score;   // Mengupdate highscore
         printf("Selamat! High Score baru: %d\n", game->highscore);

@@ -7,6 +7,9 @@
 #include <stdlib.h>
 
 Game2048 game;
+
+#define HIGHSCORE_FILE "highscore.txt"
+
 void menampilkanPapan() {
     for (int i = 0; i < 4; i++) {
         // Menampilkan garis horizontal atas
@@ -54,27 +57,26 @@ void addrandom (){
 
 }
 
-void geserMerge()
-{
+void geserMerge(Game2048 *game){
     char p =_getch();
 
     if (p == 'w' || p == 72) { //atas
-        geserAtas();
+        game->arah = 1;
     }
     else if (p == 's' || p == 80) { // bawah
-        geserBawah();
+        game->arah = 2;
     }
     else if (p == 'a' || p == 75) { //kiri
-        geserKiri();
+        game->arah = 3;
     }
     else if (p == 'd' || p == 77) { //kanan
-        geserKanan();
+        game->arah = 4;
     }
-    else if (p=='q'){//keluar
+    else if (p=='q'){//kembali
         main();
     }
     else{
-        geserMerge();
+        geserMerge(game);
     }
 }
 
@@ -93,7 +95,6 @@ void geserAtas()
             }
         }
     }
-    mergeAtas(); // Panggil fungsi merge setelah menggeser angka
 }
 
 void geserBawah()
@@ -111,18 +112,17 @@ void geserBawah()
             }
         }
     }
-    mergeBawah(); // Panggil fungsi merge setelah menggeser angka
 }
 
 void geserKiri()// Kiri
 {
-    mergeKiri(); // Panggil fungsi merge setelah menggeser angka
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
         for (int j = 1; j < 4; j++) { // Mulai dari kolom kedua
             if (game.papan[i][j] != 0) { // Jika ada angka
                 int k = j;
                 while (k > 0 && game.papan[i][k - 1] == 0) { // Selama ada sel kosong di kiri
                     game.papan[i][k - 1] = game.papan[i][k]; // Geser angka ke kiri                        papan[i][k] = 0; // Setel sel saat ini menjadi kosong
+                    game.papan[i][k] = 0;
                     k--; // Pindah ke kolom kiri
                 }
             }
@@ -133,7 +133,6 @@ void geserKiri()// Kiri
 
 void geserKanan()
 {
-  mergeKanan(); // Panggil fungsi merge setelah menggeser angka
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
         for (int j = 2; j >= 0; j--) { // Mulai dari kolom ketiga ke kiri
             if (game.papan[i][j] != 0) { // Jika ada angka
@@ -150,12 +149,12 @@ void geserKanan()
 
 void mergeAtas()
 {
-    for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom
-        for (int i = 0; i < 3; i++) { // Loop untuk baris dari atas ke bawah
-            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i + 1][j]) { // Jika angka sama
-                game.score += game.papan[i][j] * 2; // Tambahkan nilai ke skor
-                game.papan[i][j] *= 2; // Gabungkan angka
-                game.papan[i + 1][j] = 0; // Setel sel di bawah menjadi kosong
+    for (int j = 0; j < 4; j++){
+        for (int i = 0; i < 3; i++) {
+            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i + 1][j]) {
+                game.papan[i][j] *= 2;
+                game.score += game.papan[i][j];
+                game.papan[i + 1][j] = 0;
             }
         }
     }
@@ -166,8 +165,8 @@ void mergeBawah()
     for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom
         for (int i = 3; i > 0; i--) { // Loop untuk baris dari bawah ke atas
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i - 1][j]) { // Jika angka sama
-                game.score += game.papan[i][j] * 2; // Tambahkan nilai ke skor
                 game.papan[i][j] *= 2; // Gabungkan angka
+                game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.papan[i - 1][j] = 0; // Setel sel di atas menjadi kosong
             }
         }
@@ -179,8 +178,8 @@ void mergeKiri()
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
         for (int j = 0; j < 3; j++) { // Loop untuk kolom dari kiri ke kanan
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j + 1]) { // Jika angka sama
-                game.score += game.papan[i][j] * 2; // Tambahkan nilai ke skor
                 game.papan[i][j] *= 2; // Gabungkan angka
+                game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.papan[i][j + 1] = 0; // Setel sel di kanan menjadi kosong
             }
         }
@@ -192,8 +191,8 @@ void mergeKanan()
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
         for (int j = 3; j > 0; j--) { // Loop untuk kolom dari kanan ke kiri
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j - 1]) { // Jika angka sama
-                game.score += game.papan[i][j] * 2; // Tambahkan nilai ke skor
                 game.papan[i][j] *= 2; // Gabungkan angka
+                game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.papan[i][j - 1] = 0; // Setel sel di kiri menjadi kosong
             }
         }
@@ -213,7 +212,7 @@ bool gameOver()
 
     for (int i=0; i<= 3; i++){
         for (int j=0;j<3; j++){
-            if (game.papan[i][j+1] != 0 && game.papan[i][j]!=0 && game.papan[i][j] == game.papan[i][j+1]){
+            if (game.papan[i][j] == game.papan[i][j+1]){
                 return false;// jika balok sama dengan balok kanannya berarti masih lanjut
             }
         }
@@ -221,7 +220,7 @@ bool gameOver()
 
     for (int i=1; i<=3; i++){
         for (int j=0;j<=3; j++){
-            if (game.papan[i-1][j] != 0 && game.papan[i][j]!=0 && game.papan[i][j] == game.papan[i-1][j]){
+            if (game.papan[i][j] == game.papan[i-1][j]){
                 return false;// jika balok sama dengan balok bawah berarti masih lanjut
             }
         }
@@ -252,4 +251,39 @@ bool ifinitiation()
         }
     }
     return true;//jika sudah ada yg berisi angka maka false yaitu melanjutkan game
+}
+
+void inputusername(Game2048 *game){
+    fgets(game->username, sizeof(game->username), stdin);
+    
+    // Menghapus newline
+    game->username[strcspn(game->username, "\n")] = '\0'; // Menggunakan strcspn untuk menemukan dan mengganti newline
+    // strcspn mencari posisi karakter newline (\n) dalam string game->username. Jika ditemukan, kita menggantinya dengan karakter null (\0), yang menandakan akhir dari string. Ini menghilangkan newline yang ditambahkan oleh fgets ketika pengguna menekan Enter.
+    //Menggunakan fgets untuk membaca input dari pengguna. Input disimpan dalam game->username. sizeof(game->username) memastikan bahwa kita tidak membaca lebih banyak karakter daripada yang bisa ditampung oleh array.
+}
+
+// Fungsi untuk menyimpan high score ke file
+void saveHighScore(const char *username, int highscore) {
+    FILE *file = fopen(HIGHSCORE_FILE, "w");
+    if (file != NULL) {
+        fprintf(file, "%s\n%d\n", username, highscore);
+        fclose(file);
+    } else {
+        printf("Error: Unable to open high score file for writing.\n");
+    }
+}
+
+// Fungsi untuk memuat high score dari file
+void loadHighScore(Game2048 *game) {
+    FILE *file = fopen(HIGHSCORE_FILE, "r");
+    if (file != NULL) {
+        fgets(game->username, sizeof(game->username), file);
+        game->username[strcspn(game->username, "\n")] = '\0'; // Menghapus newline
+        fscanf(file, "%d", &game->highscore);
+        fclose(file);
+    } else {
+        printf("Error: Unable to open high score file for reading. Starting with default values.\n");
+        strcpy(game->username, "Player"); // Default username
+        game->highscore = 0; // Default high score
+    }
 }
