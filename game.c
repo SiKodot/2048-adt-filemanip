@@ -7,16 +7,6 @@
 #include <stdlib.h>
 
 Game2048 game;
-
-void resetPapan() 
-{
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            game.papan[i][j] = 0; // Menginisialisasi papan dengan 0
-        }
-    }
-}
-
 void menampilkanPapan() {
     for (int i = 0; i < 4; i++) {
         // Menampilkan garis horizontal atas
