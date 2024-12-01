@@ -61,27 +61,15 @@ void geserMerge(Game2048 *game){
     char p =_getch();
 
     if (p == 'w' || p == 72) { //atas
-        geserAtas();
-        mergeAtas();
-        geserAtas();
         game->arah = 1;
     }
     else if (p == 's' || p == 80) { // bawah
-        geserBawah();
-        mergeBawah();
-        geserBawah();
         game->arah = 2;
     }
     else if (p == 'a' || p == 75) { //kiri
-        geserKiri();
-        mergeKiri();
-        geserKiri();
         game->arah = 3;
     }
     else if (p == 'd' || p == 77) { //kanan
-        geserKanan();
-        mergeKanan();
-        geserKanan();
         game->arah = 4;
     }
     else if (p=='q'){//kembali
@@ -135,7 +123,6 @@ void geserKiri()// Kiri
                 while (k > 0 && game.papan[i][k - 1] == 0) { // Selama ada sel kosong di kiri
                     game.papan[i][k - 1] = game.papan[i][k]; // Geser angka ke kiri                        papan[i][k] = 0; // Setel sel saat ini menjadi kosong
                     game.papan[i][k] = 0;
-                    game.papan[i][k] = 0;
                     k--; // Pindah ke kolom kiri
                 }
             }
@@ -168,12 +155,6 @@ void mergeAtas()
                 game.papan[i][j] *= 2;
                 game.score += game.papan[i][j];
                 game.papan[i + 1][j] = 0;
-    for (int j = 0; j < 4; j++){
-        for (int i = 0; i < 3; i++) {
-            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i + 1][j]) {
-                game.papan[i][j] *= 2;
-                game.score += game.papan[i][j];
-                game.papan[i + 1][j] = 0;
             }
         }
     }
@@ -185,7 +166,6 @@ void mergeBawah()
         for (int i = 3; i > 0; i--) { // Loop untuk baris dari bawah ke atas
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i - 1][j]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
-                game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.papan[i - 1][j] = 0; // Setel sel di atas menjadi kosong
             }
@@ -200,7 +180,6 @@ void mergeKiri()
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j + 1]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
                 game.score += game.papan[i][j]; // Tambahkan nilai ke skor
-                game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.papan[i][j + 1] = 0; // Setel sel di kanan menjadi kosong
             }
         }
@@ -213,7 +192,6 @@ void mergeKanan()
         for (int j = 3; j > 0; j--) { // Loop untuk kolom dari kanan ke kiri
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j - 1]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
-                game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.score += game.papan[i][j]; // Tambahkan nilai ke skor
                 game.papan[i][j - 1] = 0; // Setel sel di kiri menjadi kosong
             }
