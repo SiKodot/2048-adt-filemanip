@@ -8,8 +8,8 @@ typedef struct {
     int papan[4][4];
     int kosong[16][2]; //array untuk menyimpan posisi papan yang kosong
     int score;
-    int highscore;
     int arah;
+    int highscore;
 
 }Game2048;
 

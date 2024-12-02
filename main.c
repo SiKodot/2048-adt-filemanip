@@ -28,8 +28,8 @@ int main() {
             }
         
             while (true) { //definisi true jika menang atau kalah akan berubah jadi false dan akan break atau selesai
-            displayPapan(&game);
             loadHighScore(&game);
+            displayPapan(&game);
             if (game.score>game.highscore){
                 saveHighScore(game.username, game.score);
             }
@@ -38,12 +38,14 @@ int main() {
 
             if (win()){ //jika saat modul win dijalankan dan true (salah satu balok mencapai 2048) maka akan dijalankan
                 displaywin(&game); //menampilkan you win dan score terakhir
+                exit(0);
                 break; //loop selesai dan permainan berakhir
             }
             
             // Periksa jika game over
             if (gameOver()) { //jika modul menjadi true (tidak ada yg bisa digerakkan lagi dan tidak ada balok yg 0) maka akan dijalankan
                 displayGameOver(&game); //menampilkan game over dan score terakhir
+                exit(0);
                 break; // Keluar dari loop jika permainan sudah berakhir
             }
 
@@ -83,7 +85,9 @@ int main() {
                 input = 0;
                 break;
             }
-
+            if (game.score>game.highscore){
+                saveHighScore(game.username, game.score);
+            }
             // Tambahkan angka acak baru setelah pergerakan
             addrandom();
                 }

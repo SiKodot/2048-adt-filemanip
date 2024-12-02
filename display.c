@@ -49,6 +49,7 @@ void printforinputuser(){
 void displayPapan(Game2048 *permainan) {
     printf("Nama Pengguna: %s\n", permainan->username);
     printf("Score: %d\n", permainan->score);  // Menggunakan -> untuk mengakses anggota dari pointer struct
+
     printf("High Score: %d\n", permainan->highscore);
     printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
 }
