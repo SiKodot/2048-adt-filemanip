@@ -1,12 +1,14 @@
 #ifndef MENU_H
 #define MENU_H
-
-#include <stdio.h>
+#include "game.h"
+#include "highscore.h"
 
 // Fungsi untuk menampilkan menu dan menangani input pengguna
 void greeting();
 void howtoplay();
-void displayPapan(Game2048 *game);
-void displayGameOver(Game2048 *game);
+void printforinputuser();
+void displayPapan(Game2048 *permainan);
+void displayGameOver(Game2048 *permainan);
+void displaywin(Game2048 *permainan);
 
 #endif // MENU_H

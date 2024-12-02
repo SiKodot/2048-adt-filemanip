@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "main.h"
 #include "display.h"
+#include "game.h"
 
 void greeting(){
         printf("     ____    ____   __           _       ___        ___        _       __________          \n");
@@ -40,34 +40,34 @@ void howtoplay(){
         printf("Tekan apapun untuk kembali");
 }
 
-void printinputusername(){
+void printforinputuser(){
         printf("Masukkan nama pengguna\n");
         printf("Jika sudah selesai tekan enter dan pastikan nama sesuai\n");
 }
 
 
-void displayPapan(Game2048 *game) {
-    printf("Nama Pengguna: %s\n", game->username);
-    printf("Score: %d\n", game->score);  // Menggunakan -> untuk mengakses anggota dari pointer struct
-    printf("High Score: %d\n", game->highscore);
+void displayPapan(Game2048 *permainan) {
+    printf("Nama Pengguna: %s\n", permainan->username);
+    printf("Score: %d\n", permainan->score);  // Menggunakan -> untuk mengakses anggota dari pointer struct
+    printf("High Score: %d\n", permainan->highscore);
     printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
 }
 
 
 // Fungsi untuk menampilkan pesan Game Over
-void displayGameOver(Game2048 *game) { 
-    printf("Game Over! Skor akhir: %d\n", game->score);
-    if (game->score > game->highscore) { // Membandingkan skor dengan highscore
-        game->highscore = game->score;   // Mengupdate highscore
-        printf("Selamat! High Score baru: %d\n", game->highscore);
+void displayGameOver(Game2048 *permainan) { 
+    printf("Game Over! Skor akhir: %d\n", permainan->score);
+    if (permainan->score > permainan->highscore) { // Membandingkan skor dengan highscore
+        permainan->highscore = permainan->score;   // Mengupdate highscore
+        printf("Selamat! High Score baru: %d\n", permainan->highscore);
     }
 }
 
-void displaywin(Game2048 *game){
-    printf("You Win! %s\n", game->username);
-    printf("Skor akhir: %d\n", game->score);
-    if (game->score > game->highscore) { // Membandingkan skor dengan highscore
-        game->highscore = game->score;   // Mengupdate highscore
-        printf("Selamat! High Score baru: %d\n", game->highscore);
+void displaywin(Game2048 *permainan){
+    printf("You Win! %s\n", permainan->username);
+    printf("Skor akhir: %d\n", permainan->score);
+    if (permainan->score > permainan->highscore) { // Membandingkan skor dengan highscore
+        permainan->highscore = permainan->score;   // Mengupdate highscore
+        printf("Selamat! High Score baru: %d\n", permainan->highscore);
     }
 }

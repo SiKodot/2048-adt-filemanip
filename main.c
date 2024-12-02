@@ -1,6 +1,6 @@
-#include "main.h" //ADT
 #include "display.h"
-#include "game.h"
+#include "game.h"//ADT
+#include "highscore.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //untuk addrandom
@@ -8,16 +8,20 @@
 
 
 int main() {
+
+    while (1){
+
     greeting(); // menampilkan main menu
     
+    int input;
 
-    char a =_getch(); //input user memilih apa 
+    int a =_getch(); //input user memilih apa 
     switch (a) {
         case '1': //start game
             system("cls"); // Bersihkan layar
 
             if (ifinitiation()){// Jika permainan baru dimulai dan isi papan 0 semua, maka menambahkan dua angka acak di awal permainan
-            printinputusername();
+            printforinputuser();
             inputusername(&game);
             addrandom();
             addrandom();
@@ -44,32 +48,41 @@ int main() {
             }
 
             // Panggil fungsi geserMerge untuk menangani input
-            geserMerge(&game);
+            game.arah=geserMerge();
             
             switch (game.arah) {
-        case 1: // Geser atas
-            geserAtas();
-            mergeAtas();
-            geserAtas();
-            break;
-        case 2: // Geser bawah
-            geserBawah();
-            mergeBawah();
-            geserBawah();
-            break;
-        case 3: // Geser kiri
-            geserKiri();
-            mergeKiri();
-            geserKiri();
-            break;
-        case 4: // Geser kanan
-            geserKanan();
-            mergeKanan();
-            geserKanan();
-            break;
-        default:
-            break; // Tidak ada aksi jika arah tidak valid
-    }
+                case 1: // Geser atas
+                    geserAtas();
+                    mergeAtas();
+                    geserAtas();
+                    break;
+                case 2: // Geser bawah
+                    geserBawah();
+                    mergeBawah();
+                    geserBawah();
+                    break;
+                case 3: // Geser kiri
+                    geserKiri();
+                    mergeKiri();
+                    geserKiri();
+                    break;
+                case 4: // Geser kanan
+                    geserKanan();
+                    mergeKanan();
+                    geserKanan();
+                    break;
+                case -1:
+                    input = -1;
+                    break;
+
+                default:
+                    break; // Tidak ada aksi jika arah tidak valid
+            }
+
+            if (input == -1) {
+                input = 0;
+                break;
+            }
 
             // Tambahkan angka acak baru setelah pergerakan
             addrandom();
@@ -86,15 +99,13 @@ int main() {
             system("cls");
             howtoplay();
             getch();// tekan apa saja untuk kembali ke main
-            system("cls"); // Bersihkan layar
-            main();
             break;
-
 
 
         case '4': //exit
             system("cls"); // Bersihkan layar
             exit(0);
             break;
+}
 }
 }
