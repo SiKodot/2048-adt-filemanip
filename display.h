@@ -7,8 +7,7 @@
 void greeting();
 void howtoplay();
 void printforinputuser();
-void displayPapan(Game2048 *permainan);
-void displayGameOver(Game2048 *permainan);
-void displaywin(Game2048 *permainan);
-
+void displayPapan(Game2048 permainan, DataHighScore dhs);
+void displayGameOver(Game2048 permainan, DataHighScore *dhs);
+void displaywin(Game2048 permainan, DataHighScore *dhs);
 #endif // MENU_H

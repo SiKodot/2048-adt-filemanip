@@ -45,30 +45,28 @@ void printforinputuser(){
         printf("Jika sudah selesai tekan enter dan pastikan nama sesuai\n");
 }
 
-
-void displayPapan(Game2048 *permainan) {
-    printf("Nama Pengguna: %s\n", permainan->username);
-    printf("Score: %d\n", permainan->score);  // Menggunakan -> untuk mengakses anggota dari pointer struct
-
-    printf("High Score: %d\n", permainan->highscore);
-    printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
+void displayPapan(Game2048 permainan, DataHighScore dhs) {
+    printf("Nama Pengguna: %s\n", permainan.username);
+   printf("Score: %d\n", permainan.score);
+   printf("High Score: %d (%s)\n", dhs.highscore, dhs.username);
+   printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
+   // Di sini Anda bisa menambahkan kode untuk menampilkan papan permainan
 }
 
-
 // Fungsi untuk menampilkan pesan Game Over
-void displayGameOver(Game2048 *permainan) { 
-    printf("Game Over! Skor akhir: %d\n", permainan->score);
-    if (permainan->score > permainan->highscore) { // Membandingkan skor dengan highscore
-        permainan->highscore = permainan->score;   // Mengupdate highscore
-        printf("Selamat! High Score baru: %d\n", permainan->highscore);
+void displayGameOver(Game2048 permainan, DataHighScore *dhs) { 
+    printf("Game Over! Skor akhir: %d\n", permainan.score);
+    if (permainan.score > dhs->highscore) { // Membandingkan skor dengan highscore
+        dhs->highscore = permainan.score;   // Mengupdate highscore
+        printf("Selamat! High Score baru: %d\n", dhs->highscore);
     }
 }
 
-void displaywin(Game2048 *permainan){
-    printf("You Win! %s\n", permainan->username);
-    printf("Skor akhir: %d\n", permainan->score);
-    if (permainan->score > permainan->highscore) { // Membandingkan skor dengan highscore
-        permainan->highscore = permainan->score;   // Mengupdate highscore
-        printf("Selamat! High Score baru: %d\n", permainan->highscore);
+void displaywin(Game2048 permainan, DataHighScore *dhs){
+    printf("You Win! %s\n", permainan.username);
+    printf("Skor akhir: %d\n", permainan.score);
+    if (permainan.score > dhs->highscore) { // Membandingkan skor dengan highscore
+        dhs->highscore = permainan.score;   // Mengupdate highscore
+        printf("Selamat! High Score baru: %d\n", dhs->highscore);
     }
 }

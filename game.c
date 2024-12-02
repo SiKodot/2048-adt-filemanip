@@ -1,5 +1,4 @@
 #include "game.h"
-#include "highscore.h"
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
@@ -41,7 +40,6 @@ void addrandom (){
             } 
         }
     }
-
     if (count == 0) 
     {
         return; //keluar dari prosedur jika tidak ada array yang kosong
@@ -148,18 +146,12 @@ void geserKanan()
     }
 }
 
-void tambahSkor(int nilai)
-{
-    game.score += nilai;
-}
-
 void mergeAtas()
 {
     for (int j = 0; j < 4; j++){ // Loop untuk setiap kolom
         for (int i = 0; i < 3; i++) { // Loop untuk baris dari atas ke bawah
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i + 1][j]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
-                tambahSkor(game.papan[i][j]); 
                 game.papan[i + 1][j] = 0; // Setel sel di atas menjadi kosong
             }
         }
@@ -172,7 +164,6 @@ void mergeBawah()
         for (int i = 3; i > 0; i--) { // Loop untuk baris dari bawah ke atas
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i - 1][j]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
-                tambahSkor(game.papan[i][j]);
                 game.papan[i - 1][j] = 0; // Setel sel di atas menjadi kosong
             }
         }
@@ -185,7 +176,6 @@ void mergeKiri()
         for (int j = 0; j < 3; j++) { // Loop untuk kolom dari kiri ke kanan
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j + 1]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
-                tambahSkor(game.papan[i][j]);
                 game.papan[i][j + 1] = 0; // Setel sel di kanan menjadi kosong
             }
         }
@@ -198,12 +188,55 @@ void mergeKanan()
         for (int j = 3; j > 0; j--) { // Loop untuk kolom dari kanan ke kiri
             if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j - 1]) { // Jika angka sama
                 game.papan[i][j] *= 2; // Gabungkan angka
-                tambahSkor(game.papan[i][j]);
                 game.papan[i][j - 1] = 0; // Setel sel di kiri menjadi kosong
             }
         }
     }
 }
+
+void skorAtas() {
+    for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom
+        for (int i = 0; i < 3; i++) { // Loop untuk baris dari atas ke bawah
+            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i + 1][j]) { // Jika angka sama
+                game.score += game.papan[i][j] * 2; // Tambahkan skor
+            }
+        }
+    }
+}
+
+
+void skorBawah() {
+    for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom
+        for (int i = 3; i > 0; i--) { // Loop untuk baris dari bawah ke atas
+            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i - 1][j]) { // Jika angka sama
+                game.score += game.papan[i][j] * 2; // Tambahkan skor
+            }
+        }
+    }
+}
+
+
+void skorKiri() {
+    for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
+        for (int j = 0; j < 3; j++) { // Loop untuk kolom dari kiri ke kanan
+            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j + 1]) { // Jika angka sama
+                game.score += game.papan[i][j] * 2; // Tambahkan skor
+            }
+        }
+    }
+}
+
+
+void skorKanan() {
+    for (int i = 0; i < 4; i++) { // Loop untuk setiap baris
+        for (int j = 3; j > 0; j--) { // Loop untuk kolom dari kanan ke kiri
+            if (game.papan[i][j] != 0 && game.papan[i][j] == game.papan[i][j - 1]) { // Jika angka sama
+                game.score += game.papan[i][j] * 2; // Tambahkan skor
+            }
+        }
+    }
+}
+
 
 bool gameOver()
 {
@@ -269,27 +302,34 @@ void inputusername(Game2048 *permainan){
 }
 
 // Fungsi untuk menyimpan high score ke file
-void saveHighScore(const char *username, int highscore) {
+void saveHighScore(Game2048 *permainan, DataHighScore *Highscore) {
+
     FILE *file = fopen(HIGHSCORE_FILE, "w");
+
+    strcpy(Highscore->username, permainan->username);
+    Highscore->highscore = permainan->score;
+
     if (file != NULL) {
-        fprintf(file, "%s\n%d\n", username, highscore);
-        fclose(file);
+        fwrite(&*Highscore, sizeof(DataHighScore), 1, file);
     } else {
         printf("Error: Unable to open high score file for writing.\n");
     }
+
+    fclose(file);
 }
 
 // Fungsi untuk memuat high score dari file
-void loadHighScore(Game2048 *game) {
-    FILE *file = fopen(HIGHSCORE_FILE, "r");
+void loadHighScore(DataHighScore *HighScore) {
+    FILE *file = fopen(HIGHSCORE_FILE, "rb");
+
     if (file != NULL) {
-        fgets(game->username, sizeof(game->username), file);
-        game->username[strcspn(game->username, "\n")] = '\0'; // Menghapus newline
-        fscanf(file, "%d", &game->highscore);
-        fclose(file);
+        fread(&*HighScore, sizeof(DataHighScore),1,file);
     } else {
         printf("Error: Unable to open high score file for reading. Starting with default values.\n");
-        strcpy(game->username, "Player"); // Default username
-        game->highscore = 0; // Default high score
+        strcpy(HighScore->username, "Player"); // Default username
+        HighScore->highscore = 0; // Default high score
+        fwrite(&*HighScore, sizeof(DataHighScore), 1, file);
     }
+
+    fclose(file);
 }
