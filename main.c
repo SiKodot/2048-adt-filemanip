@@ -13,7 +13,7 @@ int main() {
 
     while (1){
 
-        greeting(); // menampilkan main menu
+        mainmenu(); // menampilkan main menu
         
         int input;
 
@@ -32,6 +32,7 @@ int main() {
                 while (true) { //definisi true jika menang atau kalah akan berubah jadi false dan akan break atau selesai
                 loadHighScore(&dhs);
                 displayPapan(game, dhs);
+                printforinputgeser();
                 if (game.score>dhs.highscore){
                     saveHighScore(&game, &dhs);
                 }
@@ -52,30 +53,26 @@ int main() {
                 }
 
                 // Panggil fungsi geserMerge untuk menangani input
-                game.arah=geserMerge();
+                game.arah=inputgeser();
                 
                 switch (game.arah) {
                     case 1: // Geser atas
                         geserAtas();
-                        skorAtas();
                         mergeAtas();
                         geserAtas();
                         break;
                     case 2: // Geser bawah
                         geserBawah();
-                        skorBawah();
                         mergeBawah();
                         geserBawah();
                         break;
                     case 3: // Geser kiri
                         geserKiri();
-                        skorKiri();
                         mergeKiri();
                         geserKiri();
                         break;
                     case 4: // Geser kanan
                         geserKanan();
-                        skorKanan();
                         mergeKanan();
                         geserKanan();
                         break;
@@ -103,6 +100,8 @@ int main() {
 
             case '2': //Highscore
                 system("cls"); // Bersihkan layar
+                loadHighScore(&dhs);
+                displayPapan(game, dhs);
                 break;
 
 
@@ -110,6 +109,7 @@ int main() {
                 system("cls");
                 howtoplay();
                 getch();// tekan apa saja untuk kembali ke main
+                system("cls");
                 break;
 
 

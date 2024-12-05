@@ -17,7 +17,7 @@ typedef struct {
 extern Game2048 game;
 
 void menampilkanPapan(); // Deklarasi fungsi
-int geserMerge();
+int inputgeser();
 void addrandom();
 void geserAtas();
 void geserBawah();
@@ -28,10 +28,7 @@ void mergeAtas();
 void mergeBawah();
 void mergeKiri();
 void mergeKanan();
-void skorAtas();
-void skorBawah();
-void skorKiri();
-void skorKanan();
+
 void inputusername(Game2048 *permainan);
 bool gameOver();
 bool win();

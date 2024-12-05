@@ -2,8 +2,7 @@
 #define HIGHSCORE_H
 #include "game.h"
 
-typedef struct 
-{
+typedef struct {
     char username[50];
     int highscore;
 }DataHighScore;
