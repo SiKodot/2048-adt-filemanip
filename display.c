@@ -28,15 +28,20 @@ void mainmenu(){
         printf("                     /  /    | |     | |     / /__||__   | |___| |                \n");
         printf("                    /  /     | |     | |    /__     __|  |  ___  |                        \n");
         printf("                 __/  /__    | |_____| |       |   |     | |___| |                    \n");
-        printf("                |________|   |_________|       |___|     |_______|                                        \n");
+        printf("                |________|   |_________|       |___|     |_______|                                        \n\n\n\n");
         
-        printf("Main menu:\n");
-        printf("1. start game\n");
-        printf("2. highscore\n");
-        printf("3. how to play\n");
-        printf("4. exit\n\n");
-        printf("Masukkan pilihan anda\n");
+
+    printf("     ==============================================================================\n");
+    printf("                                   GAME 2048 MENU                                  \n");
+    printf("     ==============================================================================\n");
+    printf("                                   1 > Start Game                                  \n");
+    printf("                                   2 > High Score                                  \n");
+    printf("                                   3 > How to Play                                 \n");
+    printf("                                   4 > Exit                                        \n\n");
+    printf("     ==============================================================================\n");
+    printf("                                Masukkan pilihan anda                                \n");
 }
+
 
 void howtoplay(){
     /* Deskripsi: 
@@ -46,13 +51,44 @@ void howtoplay(){
        f.s : 
        Menampilkan instruksi permainan di konsol, termasuk penjelasan tentang papan, ubin, cara menggeser ubin, munculnya ubin baru, kondisi kemenangan, dan kekalahan.
     */
-        printf("Papan   : Game 2048 dimainkan di papan berukuran 4x4.\n");
-        printf("Ubin    : Setiap ubin memiliki nilai yang merupakan kelipatan dua, seperti 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, dan 2048.\n");
-        printf("Geser Ubin: Anda dapat menggeser ubin ke atas, bawah, kiri, atau kanan. Ubin yang memiliki angka yang sama akan bergabung menjadi satu ubin dengan nilai yang dijumlahkan.\n");
-        printf("Munculnya Ubin Baru: Setiap kali Anda melakukan gerakan, ubin baru dengan nilai 2 atau 4 akan muncul di papan.\n");
-        printf("Kemenangan  : Anda menang jika Anda berhasil menggabungkan ubin menjadi 2048.\n");
-        printf("Kekalahan   : Permainan berakhir jika tidak ada lagi gerakan yang mungkin dilakukan dan papan sudah penuh.\n\n\n");
-        printf("Tekan apapun untuk kembali\n");
+        // Header
+    printf("================================================================\n");
+    printf("                        HOW TO PLAY 2048                        \n");
+    printf("================================================================\n");
+
+    // Penjelasan tentang papan
+    printf("|  [ Papan ]                                                   |\n");
+    printf("|  Game 2048 dimainkan di papan berukuran 4x4.                 |\n");
+    printf("|                                                              |\n");
+    // Penjelasan tentang ubin
+    printf("|  [ Ubin ]                                                    |\n");
+    printf("|  Setiap ubin memiliki nilai kelipatan dua,                   |\n");
+    printf("|  seperti 2, 4, 8, 16, 32, hingga 2048.                       |\n");
+    printf("|                                                              |\n");
+    // Penjelasan tentang cara menggeser ubin
+    printf("|  [ Geser Ubin ]                                              |\n");
+    printf("|  Anda dapat menggeser ubin ke atas, bawah, kiri, atau kanan. |\n");
+    printf("|  Ubin dengan angka yang sama akan bergabung menjadi satu     |\n");
+    printf("|  ubin dengan nilai yang dijumlahkan.                         |\n");
+    printf("|                                                              |\n");
+    // Penjelasan tentang munculnya ubin baru
+    printf("| [ Munculnya Ubin Baru ]                                      |\n");
+    printf("| Setelah setiap gerakan, ubin baru dengan nilai 2 atau 4      |\n");
+    printf("| akan muncul secara acak di papan.                            |\n");
+    printf("|                                                              |\n");
+    // Penjelasan tentang kemenangan
+    printf("| [ Kemenangan ]                                               |\n");
+    printf("| Anda menang jika berhasil membuat ubin bernilai 2048.        |\n");
+    printf("|                                                              |\n");
+    // Penjelasan tentang kekalahan
+    printf("| [ Kekalahan ]                                                |\n");
+    printf("| Permainan berakhir jika papan penuh dan tidak ada            |\n");
+    printf("| gerakan yang mungkin dilakukan.                              |\n");
+    
+    // Footer
+    printf("================================================================\n");
+    printf("               Tekan tombol apapun untuk kembali                \n");
+    printf("================================================================\n");
 }
 
 void printforinputuser(){
@@ -63,9 +99,18 @@ void printforinputuser(){
        f.s : 
        Menampilkan pesan yang meminta pengguna untuk memasukkan nama pengguna dan memberikan instruksi tentang cara menyelesaikan input.
     */
-        printf("Masukkan nama pengguna\n");
-        printf("Jika sudah selesai tekan enter dan pastikan nama sesuai\n");
+
+    printf("================================================\n");
+    printf("                MASUKKAN NAMA ANDA              \n");
+    printf("================================================\n\n");
+    printf("Instruksi:\n");
+    printf("  1. Masukkan nama Anda (maksimal 10 karakter).\n");
+    printf("  2. Pastikan nama yang dimasukkan sudah sesuai.\n");
+    printf("  3. Tekan ENTER untuk menyelesaikan input.\n\n");
+    printf("------------------------------------------------\n");
+    printf("Silakan masukkan nama Anda: ");
 }
+
 
 void printforinputgeser(){
     /* Deskripsi: 
@@ -77,7 +122,11 @@ void printforinputgeser(){
        menggeser blok dan cara keluar dari permainan.
     */
 
-    printf("Gunakan W/A/S/D untuk menggeser blok. Tekan Q untuk keluar.\n");
+    printf("===================================\n");
+    printf("PETUNJUK KONTROL:\n");
+    printf("W/A/S/D : Geser Blok\n");
+    printf("Q       : Keluar Permainan\n");
+    printf("===================================\n");
 }
 
 void displayPapan(Game2048 permainan, DataHighScore dhs) {
@@ -104,10 +153,9 @@ void displayPapan(Game2048 permainan, DataHighScore dhs) {
     printf("+--------------------------------------+\n\n");
 }
 
-void displayGameOver(Game2048 permainan, DataHighScore *dhs) { 
+void displayGameOver(Game2048 permainan) { 
     /* Deskripsi: 
-       Prosedur ini menampilkan pesan "Game Over" beserta skor akhir dari permainan. Jika skor akhir lebih tinggi dari skor tertinggi 
-       yang tersimpan, maka skor tertinggi akan diperbarui.
+       Prosedur ini menampilkan pesan "Game Over" beserta skor akhir dari permainan.
        i.s : 
        permainan adalah data Game2048 yang berisi informasi permainan, termasuk skor akhir. 
        dhs adalah data DataHighScore yang menyimpan informasi tentang skor tertinggi.
@@ -117,14 +165,15 @@ void displayGameOver(Game2048 permainan, DataHighScore *dhs) {
        diperbarui dan ditampilkan.
     */
 
-    printf("Game Over! Skor akhir: %d\n", permainan.score); // Menampilkan pesan "Game Over" dan skor akhir permainan
-    if (permainan.score > dhs->highscore) { // Membandingkan skor akhir dengan skor tertinggi yang tersimpan
-        dhs->highscore = permainan.score;   // Mengupdate skor tertinggi dengan skor akhir jika lebih tinggi
-        printf("Selamat! High Score baru: %d\n", dhs->highscore); // Menampilkan pesan bahwa ada skor tertinggi baru
-    }
+    printf("=======================================\n");
+    printf("                GAME OVER              \n");
+    printf("=======================================\n");
+    printf("Game Over! Skor akhir: %d\n", permainan.score);
+    printf("=======================================\n");
 }
 
-void displaywin(Game2048 permainan, DataHighScore *dhs){
+
+void displaywin(Game2048 permainan){
     /* Deskripsi: 
        Prosedur ini menampilkan pesan kemenangan kepada pemain, termasuk nama pengguna dan skor akhir. Jika skor akhir 
        lebih tinggi dari skor tertinggi yang tersimpan, maka skor tertinggi akan diperbarui.
@@ -135,11 +184,11 @@ void displaywin(Game2048 permainan, DataHighScore *dhs){
        Menampilkan pesan kemenangan, nama pengguna, dan skor akhir. 
        Jika skor akhir lebih tinggi dari skor tertinggi, maka skor tertinggi akan diperbarui dan ditampilkan.
     */
+    printf("===================================\n");
+    printf("           SELAMAT MENANG!         \n");
+    printf("===================================\n");
+    printf("Selamat %s!\n", permainan.username);
+    printf("Skor akhir: %d\n", permainan.score);
+    printf("===================================\n");
 
-    printf("You Win! %s\n", permainan.username); // Menampilkan pesan kemenangan dan nama pengguna
-    printf("Skor akhir: %d\n", permainan.score); // Menampilkan skor akhir permainan
-    if (permainan.score > dhs->highscore) { // Membandingkan skor akhir dengan skor tertinggi yang tersimpan
-        dhs->highscore = permainan.score;   // Mengupdate skor tertinggi dengan skor akhir jika lebih tinggi
-        printf("Selamat! High Score baru: %d\n", dhs->highscore); // Menampilkan pesan bahwa ada skor tertinggi baru
-    }
 }

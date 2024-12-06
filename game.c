@@ -391,10 +391,10 @@ bool gameOver() {
        dan tidak ada ubin yang dapat digabungkan dengan ubin di sebelah kanan atau di bawahnya. 
        Jika ada sel kosong atau ubin yang dapat digabungkan, permainan masih berlanjut.
        i.s : 
-       game.papan adalah papan permainan yang merupakan array 2D berukuran 4x4 yang berisi nilai-nilai dari ubin permainan.
+       Belum diketahui apakah harus dijalankan atau dilewati
        f.s : 
-       Mengembalikan true jika permainan telah berakhir (tidak ada langkah yang mungkin dilakukan).
-       Mengembalikan false jika permainan masih dapat dilanjutkan (masih ada sel kosong atau ubin yang dapat digabungkan).
+       Jika true atau permainan telah berakhir maka akan menjalankan tampilan kemenangan dan end program. 
+       Jika false maka permainan masih dapat dilanjutkan.
     */
     for (int i = 0; i < 4; i++) { // Loop untuk setiap baris pada papan
         for (int j = 0; j < 4; j++) { // Loop untuk setiap kolom pada baris
@@ -422,10 +422,10 @@ bool win() {
        Jika ada, fungsi ini mengembalikan nilai true, menandakan bahwa pemain telah menang. 
        Jika tidak, fungsi ini mengembalikan nilai false, menandakan permainan masih berlanjut.
        i.s : 
-       game.papan adalah papan permainan yang merupakan array 2D berukuran 4x4 yang berisi nilai-nilai dari ubin permainan.
+       Belum diketahui apakah harus dijalankan atau dilewati
        f.s : 
-       Mengembalikan true jika ada ubin dengan nilai 2048, menandakan pemain telah menang.
-       Mengembalikan false jika tidak ada ubin dengan nilai 2048, menandakan permainan masih berlanjut.
+       Jika ada ubin dengan nilai 2048, maka pemain telah menang dan akan menampilkan kemenangan lalu end program. 
+       Jika tidak ada ubin dengan nilai 2048, menandakan permainan masih berlanjut dan akan dillanjutkan ke program berikutnya di main.
     */
     for (int i = 0; i <= 3; i++) { // Loop untuk setiap baris pada papan
         for (int j = 0; j <= 3; j++) { // Loop untuk setiap kolom pada baris
@@ -444,11 +444,11 @@ bool ifinitiation() {
        menandakan bahwa permainan dapat dimulai dengan menambahkan dua blok. 
        Jika ada setidaknya satu sel yang berisi angka, fungsi ini mengembalikan false, menandakan bahwa permainan sudah dimulai.
        i.s : 
-       game.papan adalah papan permainan yang merupakan array 2D berukuran 4x4 yang berisi nilai-nilai dari ubin permainan, 
-       yang dapat berupa 0 (kosong) atau angka positif.
+       Belum diketahui apakah harus dijalankan atau dilewati
        f.s : 
-       Mengembalikan true jika semua sel pada papan kosong, menandakan bahwa permainan dapat dimulai.
-       Mengembalikan false jika ada setidaknya satu sel yang berisi angka, menandakan bahwa permainan sudah dimulai.
+       Jika true atau semua sel pada papan kosong, menandakan bahwa permainan baru dimulai dan menjalankan inputusername dan addrandom 2 kali. 
+       Jika false atau setidaknya ada satu sel yang berisi angka, menandakan bahwa permainan sudah dimulai 
+       maka tidak akan menjalankan inputusername dan lanjut ke program selanjutnya di main.
     */
     for (int i = 0; i <= 3; i++) { // Loop untuk setiap baris pada papan
         for (int j = 0; j <= 3; j++) { // Loop untuk setiap kolom pada baris
@@ -466,9 +466,9 @@ void inputusername(Game2048 *permainan) {
        `username` dari data `Game2048`. Fungsi ini juga menghapus karakter newline yang mungkin ditambahkan 
        saat pengguna menekan tombol Enter.
        i.s : 
-       data Game2048.username tak terdefinisi
+       data Game2048.username tak tentu
        f.s : 
-       Setelah fungsi ini dijalankan, `permainan->username` berisi nama pengguna yang dimasukkan oleh pengguna, 
+       Setelah Prosedur ini dijalankan, `permainan->username` berisi nama pengguna yang dimasukkan oleh pengguna, 
        tanpa karakter newline di akhir.
     */
     fgets(permainan->username, sizeof(permainan->username), stdin); 
@@ -518,8 +518,9 @@ void saveHighScore(Game2048 *permainan, DataHighScore *Highscore)
 // Fungsi untuk memuat high score dari file
 void loadHighScore(DataHighScore *HighScore) { 
 /*  Deskripsi: 
-    Prosedur ini memuat skor tertinggi dari file HIGHSCORE_FILE dan menyimpannya dalam struktur DataHighScore. 
-    Jika file tidak dapat dibuka, maka skor tertinggi akan diatur ke nilai default yaitu 0.
+    Prosedur ini berfungsi untuk memuat informasi tentang nama pengguna dan skor tertinggi yang telah disimpan sebelumnya 
+    dari file eksternal (HIGHSCORE_FILE) ke dalam data DataHighScore. 
+    Jika file tidak dapat ditemukan atau dibuka, maka nilai default akan digunakan untuk nama pengguna dan skor tertinggi.
     i.s : 
     HIGHSCORE_FILE adalah nama file yang berisi skor tertinggi. DataHighScore adalah data yang berisi informasi tentang skor tertinggi.
     f.s : 

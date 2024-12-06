@@ -6,7 +6,7 @@
 #include "highscore.h"
 
 typedef struct {
-    char username [50];
+    char username [10];
     int papan[4][4];
     int pkosong[16][2]; 
     int score;
