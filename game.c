@@ -207,7 +207,6 @@ void geserKiri()// Kiri
     }
 }
 
-
 void geserKanan()
 {
     /* Deskripsi: 
@@ -245,13 +244,19 @@ void mergeAtas()
        atas akan tergabung menjadi satu. Dengan cara ubin yang di 
        atas nilainya dikali dua, sedangkan nilai baris ubin di 
        bawahnya akan berubah menjadi nol agar kedua ubin yang 
-       memiliki nilai sama dapat tergabung menjadi satu.
-       I.S : Seluruh angka yang memiliki nilai sama dengan baris ubin 
-       di atasnya masih berada dalam posisi masing-masing
+       memiliki nilai sama dapat tergabung menjadi satu. Selain itu, 
+       setiap kali dua ubin dengan nilai yang sama digabungkan, nilai 
+       skor akan bertambah sebesar nilai ubin hasil penggabungan 
+       tersebut sehingga skor terus meningkat sesuai jumlah nilai 
+       dari proses penggabungan.
+       I.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
+       atasnya masih berada dalam posisi masing-masing. Nilai skor 
+       belum bertambah karena tidak ada angka yang tergabung.
        F.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
        atasnya sudah tergabung menjadi satu. Nilai ubin di atas 
        menjadi dua kali lipat dari nilai asalnya, sedangkan nilai ubin 
-       di bawahnya menjadi nol agar proses merging berhasil.
+       di bawahnya menjadi nol agar proses merging berhasil. Selain 
+       itu, nilai skor sudah bertambah sesuai dengan pertambahan nilai angka yang digabung.
     */    
     for (int j = 0; j < 4; j++) // Loop untuk setiap kolom
     { 
@@ -276,13 +281,19 @@ void mergeBawah()
        bawah akan tergabung menjadi satu. Dengan cara ubin yang 
        di bawah nilainya dikali dua, sedangkan nilai baris ubin di 
        atasnya akan berubah menjadi nol agar kedua ubin yang 
-       memiliki nilai sama dapat tergabung menjadi satu.
+       memiliki nilai sama dapat tergabung menjadi satu. Selain itu, 
+       setiap kali dua ubin dengan nilai yang sama digabungkan, nilai 
+       skor akan bertambah sebesar nilai ubin hasil penggabungan 
+       tersebut sehingga skor terus meningkat sesuai jumlah nilai 
+       dari proses penggabungan.
        I.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
-       bawahnya masih berada dalam posisi masing-masing.
+       bawahnya masih berada dalam posisi masing-masing. Nilai 
+       skor belum bertambah karena tidak ada angka yang tergabung.
        F.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
        bawahnya sudah tergabung menjadi satu. Nilai ubin di bawah 
-       menjadi dua kali lipat dari nilai asalnya, sedangkan nilai 
-       ubin di atasnya menjadi nol agar proses merging berhasil.
+       menjadi dua kali lipat dari nilai asalnya, sedangkan nilai ubin 
+       di atasnya menjadi nol agar proses merging berhasil. Selain 
+       itu, nilai skor sudah bertambah sesuai dengan pertambahan nilai angka yang digabung.
     */        
     for (int j = 0; j < 4; j++) // Loop untuk setiap kolom
     { 
@@ -307,13 +318,20 @@ void mergeKiri()
        kolom ubin yang di kiri akan tergabung menjadi satu. Dengan 
        cara ubin yang di kiri nilainya dikali dua, sedangkan nilai baris 
        ubin di samping kanannya akan berubah menjadi nol agar 
-       kedua ubin yang memiliki nilai sama dapat tergabung menjadi satu.
+       kedua ubin yang memiliki nilai sama dapat tergabung menjadi 
+       satu. Selain itu, setiap kali dua ubin dengan nilai yang sama 
+       digabungkan, nilai skor akan bertambah sebesar nilai ubin 
+       hasil penggabungan tersebut sehingga skor terus meningkat 
+       sesuai jumlah nilai dari proses penggabungan.
        I.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
-       di sebelah kiri masih berada dalam posisi masing-masing.
+       di sebelah kiri masih berada dalam posisi masing-masing. 
+       Nilai skor belum bertambah karena tidak ada angka yang tergabung.
        F.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
        di samping kiri sudah tergabung menjadi satu. Nilai ubin di 
        kiri menjadi dua kali lipat dari nilai asalnya, sedangkan nilai 
-       ubin di samping kanan menjadi nol agar proses merging berhasil.
+       ubin di samping kanan menjadi nol agar proses merging 
+       berhasil. Selain itu, nilai skor sudah bertambah sesuai dengan 
+       pertambahan nilai angka yang digabung.
     */        
     for (int i = 0; i < 4; i++) // Loop untuk setiap baris
     { 
@@ -339,13 +357,19 @@ void mergeKanan()
        Dengan cara ubin yang di kanan nilainya dikali dua, 
        sedangkan nilai baris ubin di samping kirinya akan berubah 
        menjadi nol agar kedua ubin yang memiliki nilai sama dapat 
-       tergabung menjadi satu.
+       tergabung menjadi satu. Selain itu, setiap kali dua ubin dengan 
+       nilai yang sama digabungkan, nilai skor akan bertambah 
+       sebesar nilai ubin hasil penggabungan tersebut sehingga skor 
+       terus meningkat sesuai jumlah nilai dari proses penggabungan.
        I.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
-       di sebelah kanan masih berada dalam posisi masing-masing.
+       di sebelah kanan masih berada dalam posisi masing-masing. 
+       Nilai skor belum bertambah karena tidak ada angka yang tergabung.
        F.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
        di samping kanan sudah tergabung menjadi satu. Nilai ubin di 
        kanan menjadi dua kali lipat dari nilai asalnya, sedangkan nilai 
-       ubin di samping kiri menjadi nol agar proses merging berhasil.
+       ubin di samping kiri menjadi nol agar proses merging berhasil. 
+       Selain itu, nilai skor sudah bertambah sesuai dengan 
+       pertambahan nilai angka yang digabung.
     */        
     for (int i = 0; i < 4; i++) // Loop untuk setiap baris
     { 

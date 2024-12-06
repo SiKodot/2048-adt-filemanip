@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "display.h"
 #include "game.h"
-
+#include "highscore.h"
 
 void mainmenu(){
     /*

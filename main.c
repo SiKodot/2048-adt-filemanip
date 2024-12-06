@@ -5,7 +5,6 @@
 #include <time.h> //untuk addrandom
 #include <conio.h> // untuk getch
 
-
 int main() {
     
     DataHighScore dhs;
