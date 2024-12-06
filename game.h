@@ -8,7 +8,7 @@
 typedef struct {
     char username [50];
     int papan[4][4];
-    int kosong[16][2]; //array untuk menyimpan posisi papan yang kosong
+    int pkosong[16][2]; 
     int score;
     int arah;
 
@@ -16,7 +16,9 @@ typedef struct {
 
 extern Game2048 game;
 
-void menampilkanPapan(); // Deklarasi fungsi
+// Deklarasi fungsi
+
+void menampilkanPapan(); 
 int inputgeser();
 void addrandom();
 void geserAtas();

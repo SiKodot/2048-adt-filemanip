@@ -1,6 +1,5 @@
 #include "display.h"
 #include "game.h"//ADT
-#include "highscore.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //untuk addrandom
@@ -8,7 +7,7 @@
 
 
 int main() {
-
+    
     DataHighScore dhs;
 
     while (1){

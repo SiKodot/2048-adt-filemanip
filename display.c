@@ -2,6 +2,7 @@
 #include "display.h"
 #include "game.h"
 
+
 void mainmenu(){
     /*
     Deskripsi:
@@ -80,6 +81,20 @@ void printforinputgeser(){
 }
 
 void displayPapan(Game2048 permainan, DataHighScore dhs) {
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menampilkan informasi ketika 
+       permainan sedang berlangsung mencakup nama pengguna 
+       saat ini, skor saat ini, skor tertinggi yang pernah di capai 
+       beserta nama pengguna yang mencapainya, serta instruksi 
+       kontrol permainan.
+       I.S : Data permainan (Game2048) yang berisi informasi nama 
+       pengguna dan skor saat ini sudah tersedia, data skor tertinggi 
+       (DataHighScore) yeng berisi informasi skor tertinggi dan 
+       nama pengguna pemilik skor tersebut sudah tersedia tetapi 
+       belum di tampilkan di layar.
+       F.S : Informasi nama pengguna, skor saat ini, nama dan skor 
+       tertinggi, dan petunjuk penggunaan berhasil ditampilkan ke layar.
+    */
     printf("Nama Pengguna: %s\n", permainan.username);
     printf("Score: %d\n", permainan.score);
     printf("High Score: %d (%s)\n", dhs.highscore, dhs.username);

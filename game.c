@@ -1,4 +1,5 @@
 #include "game.h"
+#include "highscore.h"
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
@@ -7,32 +8,52 @@
 
 Game2048 game;
 
-#define HIGHSCORE_FILE "highscore.txt"
-
 void menampilkanPapan() 
 {
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk mencetak tampilan awal dari 
+       papan permainan dengan menggunakan array dua dimensi 4x4 
+       bertipe integer serta berisikan angka-angka permainan   
+       I.S : Papan belum di tampilkan ke layar
+       F.S : Sudah menampilkan tampilan papan permainan dari program 
+             dengan nilai integer 0 pada setiap baris dan kolomnya. 
+    */
     for (int i = 0; i < 4; i++) 
     {
-        // Menampilkan garis horizontal atas
+        
         if (i == 0) 
         {
-            printf("+------+------+------+------+\n");
+            printf("+------+------+------+------+\n");// Menampilkan garis horizontal atas
         }
 
         for (int j = 0; j < 4; j++)
         {
-            printf("| %4d ", game.papan[i][j]); // Menampilkan isi papan dengan batas
+            printf("| %4d ", game.papan[i][j]); // Menampilkan isi papan dengan batas penutup kiri
         }
-        printf("|\n"); // Menutup baris dengan batas vertikal
+        printf("|\n"); // Menutup baris dengan batas vertikal paling kanan
 
         // Menampilkan garis horizontal bawah
         printf("+------+------+------+------+\n");
     }
 }
 
-void addrandom ()
+void addrandom()
 {
-    srand((unsigned)time(NULL));// untuk memastikan hasil angka acak dari rand() bervariasi setiap eksekusi program dengan menggunakan waktu sebagai seed
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menambahkan angka 2 atau 4 ke 
+       salah satu posisi array papan permainan yang bernilai 0. 
+       Pemilihan angka dilakukan secara acak dengan probabilitas 
+       90% untuk angka 2 dan 10% untuk angka 4. Lokasi array yang
+       memiliki angka 0 juga ditentukan secara acak.
+       I.S : Posisi dan jumlah array papan yang berisikan angka 0 belum 
+       di ketahui, angka 2 atau 4 belum di inisialisasi ke salah satu 
+       array papan yang berisikan angka 0.
+       F.S : Jumlah dan posisi array papan yang berisikan angka 0 
+       diketahui, salah satu array papan yang berisikan angka 0 nilai 
+       nya di ubah menjadi angka 2 atau angka 4.
+    */
+    srand((unsigned)time(NULL));/* untuk memastikan hasil angka acak dari rand() 
+                                   bervariasi setiap eksekusi program dengan menggunakan waktu sebagai seed*/
 
     int count = 0; //variabel untuk penomoran 
     
@@ -42,8 +63,8 @@ void addrandom ()
         {
             if (game.papan[i][j] == 0) 
             {
-                game.kosong[count][0] = i; //menyimpan baris yang kosong
-                game.kosong[count][1] = j; //menyimpan kolom yang kosong
+                game.pkosong[count][0] = i; //menyimpan baris yang kosong
+                game.pkosong[count][1] = j; //menyimpan kolom yang kosong
                 count ++;
             } 
         }
@@ -55,8 +76,8 @@ void addrandom ()
 
     //pilih posisi array kosong secara acak
     int pilihan = rand() % count;
-    int baris = game.kosong[pilihan][0];
-    int kolom = game.kosong[pilihan][1];
+    int baris = game.pkosong[pilihan][0];
+    int kolom = game.pkosong[pilihan][1];
 
     //tambahkan array kosong yang terpilih dengan angka 2 (90%) atau 4 (10%)
     game.papan[baris][kolom] = (rand() % 100 < 90 ? 2 : 4);
@@ -217,7 +238,21 @@ void geserKanan()
 
 void mergeAtas()
 {
-    
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menggabungkan angka yang ada 
+       di dalam papan permainan saat baris ubin memiliki nilai yang 
+       sama dengan baris ubin di atasnya sehingga baris ubin yang 
+       atas akan tergabung menjadi satu. Dengan cara ubin yang di 
+       atas nilainya dikali dua, sedangkan nilai baris ubin di 
+       bawahnya akan berubah menjadi nol agar kedua ubin yang 
+       memiliki nilai sama dapat tergabung menjadi satu.
+       I.S : Seluruh angka yang memiliki nilai sama dengan baris ubin 
+       di atasnya masih berada dalam posisi masing-masing
+       F.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
+       atasnya sudah tergabung menjadi satu. Nilai ubin di atas 
+       menjadi dua kali lipat dari nilai asalnya, sedangkan nilai ubin 
+       di bawahnya menjadi nol agar proses merging berhasil.
+    */    
     for (int j = 0; j < 4; j++) // Loop untuk setiap kolom
     { 
         for (int i = 0; i < 3; i++) // Loop untuk baris dari atas ke bawah
@@ -234,6 +269,21 @@ void mergeAtas()
 
 void mergeBawah()
 {
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menggabungkan angka yang ada 
+       di dalam papan permainan saat baris ubin memiliki nilai yang 
+       sama dengan baris ubin di bawahnya sehingga baris ubin yang 
+       bawah akan tergabung menjadi satu. Dengan cara ubin yang 
+       di bawah nilainya dikali dua, sedangkan nilai baris ubin di 
+       atasnya akan berubah menjadi nol agar kedua ubin yang 
+       memiliki nilai sama dapat tergabung menjadi satu.
+       I.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
+       bawahnya masih berada dalam posisi masing-masing.
+       F.S : Seluruh angka yang memiliki nilai sama dengan baris ubin di 
+       bawahnya sudah tergabung menjadi satu. Nilai ubin di bawah 
+       menjadi dua kali lipat dari nilai asalnya, sedangkan nilai 
+       ubin di atasnya menjadi nol agar proses merging berhasil.
+    */        
     for (int j = 0; j < 4; j++) // Loop untuk setiap kolom
     { 
         for (int i = 3; i > 0; i--) // Loop untuk baris dari bawah ke atas
@@ -250,6 +300,21 @@ void mergeBawah()
 
 void mergeKiri()
 {
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menggabungkan angka yang ada 
+       di dalam papan permainan saat kolom ubin memiliki nilai 
+       yang sama dengan kolom ubin di samping kirinya sehingga 
+       kolom ubin yang di kiri akan tergabung menjadi satu. Dengan 
+       cara ubin yang di kiri nilainya dikali dua, sedangkan nilai baris 
+       ubin di samping kanannya akan berubah menjadi nol agar 
+       kedua ubin yang memiliki nilai sama dapat tergabung menjadi satu.
+       I.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
+       di sebelah kiri masih berada dalam posisi masing-masing.
+       F.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
+       di samping kiri sudah tergabung menjadi satu. Nilai ubin di 
+       kiri menjadi dua kali lipat dari nilai asalnya, sedangkan nilai 
+       ubin di samping kanan menjadi nol agar proses merging berhasil.
+    */        
     for (int i = 0; i < 4; i++) // Loop untuk setiap baris
     { 
         for (int j = 0; j < 3; j++) // Loop untuk kolom dari kiri ke kanan
@@ -266,6 +331,22 @@ void mergeKiri()
 
 void mergeKanan()
 {
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menggabungkan angka yang ada 
+       di dalam papan permainan saat kolom ubin memiliki nilai 
+       yang sama dengan kolom ubin di samping kanannya sehingga 
+       kolom ubin yang di kanan akan tergabung menjadi satu. 
+       Dengan cara ubin yang di kanan nilainya dikali dua, 
+       sedangkan nilai baris ubin di samping kirinya akan berubah 
+       menjadi nol agar kedua ubin yang memiliki nilai sama dapat 
+       tergabung menjadi satu.
+       I.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
+       di sebelah kanan masih berada dalam posisi masing-masing.
+       F.S : Seluruh angka yang memiliki nilai sama dengan kolom ubin 
+       di samping kanan sudah tergabung menjadi satu. Nilai ubin di 
+       kanan menjadi dua kali lipat dari nilai asalnya, sedangkan nilai 
+       ubin di samping kiri menjadi nol agar proses merging berhasil.
+    */        
     for (int i = 0; i < 4; i++) // Loop untuk setiap baris
     { 
         for (int j = 3; j > 0; j--) // Loop untuk kolom dari kanan ke kiri
@@ -310,8 +391,6 @@ bool gameOver() {
 
     return true; // Jika tidak ada yang bisa dilakukan, maka lose/gameover
 }
-
-
 
 bool win() {
     /* Deskripsi: 
@@ -385,6 +464,18 @@ void inputusername(Game2048 *permainan) {
 // Fungsi untuk menyimpan high score ke file
 void saveHighScore(Game2048 *permainan, DataHighScore *Highscore) 
 {
+    /* Deskripsi :
+       Prosedur ini berfungsi untuk menyalin informasi tentang 
+       nama pengguna dan skor tertinggi yang di capai (high score) 
+       dari data Game2048 ke dalam data DataHighScore untuk di 
+       simpan secara permanen di file eksternal (HIGHSCORE_FILE).
+       I.S : Program memiliki data pemain yang sedang aktif, termasuk 
+       username dan skor yang sedang dicapai. Dan file untuk 
+       menyimpan skor tertinggi (HIGHSCORE_FILE) tersedia untuk dibuka.
+       F.S : Data skor tertinggi berhasil disimpan ke file dengan format 
+       yang sesuai, dan jika file yang dibuka itu kosong(NULL), 
+       muncul pesan error pada layar.
+    */    
     FILE *file = fopen(HIGHSCORE_FILE, "w");
 
     strcpy(Highscore->username, permainan->username);
@@ -410,18 +501,18 @@ void loadHighScore(DataHighScore *HighScore) {
     f.s : 
     Struktur DataHighScore telah diisi dengan skor tertinggi dari file dan akan dibaca. Jika file tidak dapat dibuka, maka skor tertinggi akan diatur ke nilai default. */
 
-FILE *file = fopen(HIGHSCORE_FILE, "rb"); // Membuka file HIGHSCORE_FILE
+    FILE *file = fopen(HIGHSCORE_FILE, "rb"); // Membuka file HIGHSCORE_FILE
 // Jika file tidak dapat dibuka, maka file akan bernilai NULL
 
-if (file != NULL) { // Jika file ada
-    fread(&*HighScore, sizeof(DataHighScore),1,file); // Membaca skor tertinggi dari file dan menyimpannya dalam data DataHighScore
-} else { // Jika file tidak dapat dibuka
-    printf("Error: Unable to open high score file for reading. Starting with default values.\n"); // Mencetak pesan error
-    strcpy(HighScore->username, "Player"); // Mengatur nama pengguna ke default yaitu "Player"
-    HighScore->highscore = 0; // Mengatur skor tertinggi ke nilai default 0
-    // fwrite(&*HighScore, sizeof(DataHighScore), 1, file); // Baris ini tidak dapat dijalankan karena file tidak dapat dibuka
-    // Sebaiknya, buat file baru dan tulis skor tertinggi ke dalamnya
-    fwrite(&*HighScore, sizeof(DataHighScore), 1, file); // Menulis skor tertinggi ke dalam file
-    }
-    fclose(file); // Menutup file
+    if (file != NULL) { // Jika file ada
+        fread(&*HighScore, sizeof(DataHighScore),1,file); // Membaca skor tertinggi dari file dan menyimpannya dalam data DataHighScore
+    } else { // Jika file tidak dapat dibuka
+        printf("Error: Unable to open high score file for reading. Starting with default values.\n"); // Mencetak pesan error
+        strcpy(HighScore->username, "Player"); // Mengatur nama pengguna ke default yaitu "Player"
+        HighScore->highscore = 0; // Mengatur skor tertinggi ke nilai default 0
+        // fwrite(&*HighScore, sizeof(DataHighScore), 1, file); // Baris ini tidak dapat dijalankan karena file tidak dapat dibuka
+        // Sebaiknya, buat file baru dan tulis skor tertinggi ke dalamnya
+        fwrite(&*HighScore, sizeof(DataHighScore), 1, file); // Menulis skor tertinggi ke dalam file
+        }
+        fclose(file); // Menutup file
 }
