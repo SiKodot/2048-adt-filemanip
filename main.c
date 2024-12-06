@@ -10,7 +10,7 @@ int main() {
     DataHighScore dhs;
 
     while (1){
-
+        system("cls");
         mainmenu(); // menampilkan main menu
         
         int input;
@@ -28,6 +28,7 @@ int main() {
                 }
             
                 while (true) { //definisi true jika menang atau kalah akan berubah jadi false dan akan break atau selesai
+                
                 loadHighScore(&dhs);
                 displayPapan(game, dhs);
                 printforinputgeser();
@@ -92,6 +93,7 @@ int main() {
                 }
                 // Tambahkan angka acak baru setelah pergerakan
                 addrandom();
+                system("cls");
                 }
                 break;
 
@@ -100,6 +102,7 @@ int main() {
                 system("cls"); // Bersihkan layar
                 loadHighScore(&dhs);
                 displayPapan(game, dhs);
+                getch();
                 break;
 
 

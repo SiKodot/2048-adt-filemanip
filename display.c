@@ -118,8 +118,7 @@ void printforinputgeser(){
        i.s : 
        Layar tidak menampilkan apa apa
        f.s : 
-       Menampilkan pesan yang menjelaskan kontrol untuk 
-       menggeser blok dan cara keluar dari permainan.
+       Menampilkan pesan yang menjelaskan kontrol untuk menggeser blok dan cara keluar dari permainan.
     */
 
     printf("===================================\n");
@@ -157,12 +156,9 @@ void displayGameOver(Game2048 permainan) {
     /* Deskripsi: 
        Prosedur ini menampilkan pesan "Game Over" beserta skor akhir dari permainan.
        i.s : 
-       permainan adalah data Game2048 yang berisi informasi permainan, termasuk skor akhir. 
-       dhs adalah data DataHighScore yang menyimpan informasi tentang skor tertinggi.
+       Layar tidak menampilkan apa apa
        f.s : 
-       Menampilkan pesan "Game Over" dan skor akhir. Jika skor akhir 
-       lebih tinggi dari skor tertinggi, maka skor tertinggi akan 
-       diperbarui dan ditampilkan.
+       Menampilkan pesan "Game Over" dan skor akhir.
     */
 
     printf("=======================================\n");
@@ -175,17 +171,14 @@ void displayGameOver(Game2048 permainan) {
 
 void displaywin(Game2048 permainan){
     /* Deskripsi: 
-       Prosedur ini menampilkan pesan kemenangan kepada pemain, termasuk nama pengguna dan skor akhir. Jika skor akhir 
-       lebih tinggi dari skor tertinggi yang tersimpan, maka skor tertinggi akan diperbarui.
+       Prosedur ini menampilkan pesan kemenangan kepada pemain, termasuk nama pengguna dan skor akhir. 
        i.s : 
-       permainan adalah data Game2048 yang berisi informasi permainan, termasuk skor akhir. 
-       dhs adalah data DataHighScore yang menyimpan informasi tentang skor tertinggi.
+       Layar tidak menampilkan apa apa
        f.s : 
        Menampilkan pesan kemenangan, nama pengguna, dan skor akhir. 
-       Jika skor akhir lebih tinggi dari skor tertinggi, maka skor tertinggi akan diperbarui dan ditampilkan.
     */
     printf("===================================\n");
-    printf("           SELAMAT MENANG!         \n");
+    printf("        SELAMAT ANDA MENANG!       \n");
     printf("===================================\n");
     printf("Selamat %s!\n", permainan.username);
     printf("Skor akhir: %d\n", permainan.score);
