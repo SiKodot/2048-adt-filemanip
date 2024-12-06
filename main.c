@@ -21,79 +21,86 @@ int main() {
                 system("cls"); // Bersihkan layar
 
                 if (ifinitiation()){// Jika permainan baru dimulai dan isi papan 0 semua, maka menambahkan dua angka acak di awal permainan
-                printforinputuser();
-                inputusername(&game);
-                addrandom();
-                addrandom();
+                    printforinputuser();
+                    inputusername(&game);
+                    addrandom();
+                    addrandom();
                 }
             
-                while (true) { //definisi true jika menang atau kalah akan berubah jadi false dan akan break atau selesai
+                while (1) { //definisi true jika menang atau kalah akan berubah jadi false dan akan break atau selesai
                 
-                loadHighScore(&dhs);
-                displayPapan(game, dhs);
-                printforinputgeser();
-                if (game.score>dhs.highscore){
-                    saveHighScore(&game, &dhs);
-                }
-                // Tampilkan papan
-                menampilkanPapan();
+                    loadHighScore(&dhs);
+                    displayPapan(game, dhs);
+                    printforinputgeser();
+                    if (game.score>dhs.highscore){
+                        saveHighScore(&game, &dhs);
+                    }
+                    // Tampilkan papan
+                    menampilkanPapan();
 
-                if (win()){ //jika saat modul win dijalankan dan true (salah satu balok mencapai 2048) maka akan dijalankan
-                    displaywin(game); //menampilkan you win dan score terakhir
-                    exit(0);
-                    break; //loop selesai dan permainan berakhir
-                }
-                
-                // Periksa jika game over
-                if (gameOver()) { //jika modul menjadi true (tidak ada yg bisa digerakkan lagi dan tidak ada balok yg 0) maka akan dijalankan
-                    displayGameOver(game); //menampilkan game over dan score terakhir
-                    exit(0);
-                    break; // Keluar dari loop jika permainan sudah berakhir
-                }
+                    if (win()){ //jika saat modul win dijalankan dan true (salah satu balok mencapai 2048) maka akan dijalankan
+                        displaywin(game); //menampilkan you win dan score terakhir
+                        int c = _getch();
+                        while (c != '1') { // Jika pengguna menekan '1', kembali ke menu utama
+                            c = _getch();
+                            if (c == '1') return 0; // keluar dari loop permainan
+                        }
+                        // Jika tidak, tetap di dalam loop dan tunggu input lebih lanjut
+                    }
+                    // Periksa jika game over
+                    if (gameOver()) { //jika modul menjadi true (tidak ada yg bisa digerakkan lagi dan tidak ada balok yg 0) maka akan dijalankan
+                        displayGameOver(game); //menampilkan game over dan score terakhir
+                        int c = _getch();
+                        while (c != '1') { // Jika pengguna menekan '1', kembali ke menu utama
+                            c = _getch();
+                            if (c == '1') return 0; // keluar dari loop permainan
+                        }
+                        // Jika tidak, tetap di dalam loop dan tunggu input lebih lanjut
+                    }
 
-                // Panggil fungsi geserMerge untuk menangani input
-                game.arah=inputgeser();
-                
-                switch (game.arah) {
-                    case 1: // Geser atas
-                        geserAtas();
-                        mergeAtas();
-                        geserAtas();
-                        break;
-                    case 2: // Geser bawah
-                        geserBawah();
-                        mergeBawah();
-                        geserBawah();
-                        break;
-                    case 3: // Geser kiri
-                        geserKiri();
-                        mergeKiri();
-                        geserKiri();
-                        break;
-                    case 4: // Geser kanan
-                        geserKanan();
-                        mergeKanan();
-                        geserKanan();
-                        break;
-                    case -1:
-                        input = -1;
-                        break;
+                    // Panggil fungsi geserMerge untuk menangani input
+                    game.arah=inputgeser();
+                    
+                    switch (game.arah) {
+                        case 1: // Geser atas
+                            geserAtas();
+                            mergeAtas();
+                            geserAtas();
+                            break;
+                        case 2: // Geser bawah
+                            geserBawah();
+                            mergeBawah();
+                            geserBawah();
+                            break;
+                        case 3: // Geser kiri
+                            geserKiri();
+                            mergeKiri();
+                            geserKiri();
+                            break;
+                        case 4: // Geser kanan
+                            geserKanan();
+                            mergeKanan();
+                            geserKanan();
+                            break;
+                        case -1:
+                            input = -1;
+                            break;
 
-                    default:
-                        break; // Tidak ada aksi jika arah tidak valid
-                }
+                        default:
+                            break; // Tidak ada aksi jika arah tidak valid
+                    }
 
-                if (input == -1) {
-                    input = 0;
-                    break;
-                }
-                
-                if (game.score>dhs.highscore){
-                    saveHighScore(&game, &dhs);
-                }
-                // Tambahkan angka acak baru setelah pergerakan
-                addrandom();
-                system("cls");
+                    if (input == -1) {
+                        input = 0;
+                        break;
+                    }
+                    
+                    if (game.score>dhs.highscore){
+                        saveHighScore(&game, &dhs);
+                    }
+                    // Tambahkan angka acak baru setelah pergerakan
+                    addrandom();
+                    system("cls");
                 }
                 break;
 
@@ -118,6 +125,6 @@ int main() {
                 system("cls"); // Bersihkan layar
                 exit(0);
                 break;
-            }
         }
     }
+}

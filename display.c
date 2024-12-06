@@ -166,6 +166,7 @@ void displayGameOver(Game2048 permainan) {
     printf("=======================================\n");
     printf("Game Over! Skor akhir: %d\n", permainan.score);
     printf("=======================================\n");
+    printf("Tekan 1 untuk keluar\n");
 }
 
 
@@ -183,5 +184,5 @@ void displaywin(Game2048 permainan){
     printf("Selamat %s!\n", permainan.username);
     printf("Skor akhir: %d\n", permainan.score);
     printf("===================================\n");
-
+    printf("Tekan 1 untuk keluar\n");
 }
