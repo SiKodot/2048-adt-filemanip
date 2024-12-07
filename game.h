@@ -30,7 +30,6 @@ void mergeAtas();
 void mergeBawah();
 void mergeKiri();
 void mergeKanan();
-
 void inputusername(Game2048 *permainan);
 bool gameOver();
 bool win();

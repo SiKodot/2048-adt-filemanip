@@ -21,29 +21,29 @@ int main() {
                 system("cls"); // Bersihkan layar
 
                 if (ifinitiation()){// Jika permainan baru dimulai dan isi papan 0 semua, maka menambahkan dua angka acak di awal permainan
-                    printforinputuser();
-                    inputusername(&game);
-                    addrandom();
-                    addrandom();
+                    printforinputuser(); //menampilkan cara memasukkan username ke data game
+                    inputusername(&game); //modul untuk memasukkan input user ke dalam game
+                    // Tambahkan 2 angka acal di awal permainan
+                    addrandom(); 
+                    addrandom(); 
                 }
             
-                while (1) { //definisi true jika menang atau kalah akan berubah jadi false dan akan break atau selesai
+                while (1) { 
                 
-                    loadHighScore(&dhs);
-                    displayPapan(game, dhs);
-                    printforinputgeser();
-                    if (game.score>dhs.highscore){
-                        saveHighScore(&game, &dhs);
+                    loadHighScore(&dhs); //mengakses file highscore 
+                    displayPapan(game, dhs); //berisi nama, score, nama dari highscore, dan highscore
+                    printforinputgeser(); //menampilkan panduan menggeser ubin
+                    if (game.score>dhs.highscore){ //jika game2048.score lebih besar dari data highscore
+                        saveHighScore(&game, &dhs); // maka score pemain akan disimpan kedalam datahighscore
                     }
-                    // Tampilkan papan
-                    menampilkanPapan();
+                    menampilkanPapan(); // Menampilkan papan dan grid
 
-                    if (win()){ //jika saat modul win dijalankan dan true (salah satu balok mencapai 2048) maka akan dijalankan
+                    if (win()){ //jika saat modul win dijalankan dan true/win (salah satu balok mencapai 2048) maka akan dijalankan
                         displaywin(game); //menampilkan you win dan score terakhir
                         int c = _getch();
-                        while (c != '1') { // Jika pengguna menekan '1', kembali ke menu utama
+                        while (c != '1') { // Jika pengguna menekan '1', akan keluar dari permainan
                             c = _getch();
-                            if (c == '1') return 0; // keluar dari loop permainan
+                            if (c == '1') return 0; // keluar permainan
                         }
                         // Jika tidak, tetap di dalam loop dan tunggu input lebih lanjut
                     }
@@ -51,15 +51,15 @@ int main() {
                     if (gameOver()) { //jika modul menjadi true (tidak ada yg bisa digerakkan lagi dan tidak ada balok yg 0) maka akan dijalankan
                         displayGameOver(game); //menampilkan game over dan score terakhir
                         int c = _getch();
-                        while (c != '1') { // Jika pengguna menekan '1', kembali ke menu utama
+                        while (c != '1') { // Jika pengguna menekan '1', akan keluar dari permainan
                             c = _getch();
-                            if (c == '1') return 0; // keluar dari loop permainan
+                            if (c == '1') return 0; // keluar permainan
                         }
                         // Jika tidak, tetap di dalam loop dan tunggu input lebih lanjut
                     }
 
-                    // Panggil fungsi geserMerge untuk menangani input
-                    game.arah=inputgeser();
+                    // Panggil fungsi geserMerge untuk menangani input untuk menggeser
+                    game.arah=inputgeser(); //menyimpan hasil function inputgeser kedalam data game2048.arah
                     
                     switch (game.arah) {
                         case 1: // Geser atas
@@ -90,13 +90,13 @@ int main() {
                             break; // Tidak ada aksi jika arah tidak valid
                     }
 
-                    if (input == -1) {
+                    if (input == -1) { //kembali ke menu utama
                         input = 0;
                         break;
                     }
                     
-                    if (game.score>dhs.highscore){
-                        saveHighScore(&game, &dhs);
+                    if (game.score>dhs.highscore){//jika game2048.score lebih besar dari data highscore
+                        saveHighScore(&game, &dhs); // maka score pemain akan disimpan kedalam datahighscore
                     }
                     // Tambahkan angka acak baru setelah pergerakan
                     addrandom();
@@ -107,21 +107,21 @@ int main() {
 
             case '2': //Highscore
                 system("cls"); // Bersihkan layar
-                loadHighScore(&dhs);
-                displayPapan(game, dhs);
-                getch();
+                loadHighScore(&dhs); //mengakses file highscore 
+                displayPapan(game, dhs); //berisi nama, score, nama dari highscore, dan highscore
+                getch(); //pengguna harus menginput apapun untuk kembali ke main menu
                 break;
 
 
             case '3': //how to play
                 system("cls");
-                howtoplay();
-                getch();// tekan apa saja untuk kembali ke main
+                howtoplay(); // menampilkan cara bermain 
+                getch();// tekan apa saja untuk kembali ke main menu
                 system("cls");
                 break;
 
 
-            case '4': //exit
+            case '4': //exit/keluar dari permainan
                 system("cls"); // Bersihkan layar
                 exit(0);
                 break;
