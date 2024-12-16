@@ -12,3 +12,7 @@ build/Debug/main.o
 build/Debug/menu.o
 build/Debug/ukuran.o
 build/Debug/game.o
+build/Debug/display.o
+highscore.txt
+.gitignore
+highscore.txt
